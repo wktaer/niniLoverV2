@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Tiempo Juntos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #ffe6f0, #fff0f5);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float 6s ease-in infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 1;
+            margin: 20px;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #ff69b4;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .timer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .time-unit {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff69b4;
+            margin-bottom: 0.5rem;
+        }
+
+        .label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .message {
+            color: #ff69b4;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            font-style: italic;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background-color: #ff69b4;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .back-button:hover {
+            transform: scale(1.05);
+            background-color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="heartsContainer"></div>
+    
+    <div class="container">
+        <h1>💑 Nuestro Tiempo Juntos 💑</h1>
+        
+        <div class="timer">
+            <div class="time-unit">
+                <div class="number" id="years">0</div>
+                <div class="label">Años</div>
+            </div>
+            <div class="time-unit">
+                <div class="number" id="months">0</div>
+                <div class="label">Meses</div>
+            </div>
+            <div class="time-unit">
+                <div class="number" id="days">0</div>
+                <div class="label">Días</div>
+            </div>
+            <div class="time-unit">
+                <div class="number" id="hours">0</div>
+                <div class="label">Horas</div>
+            </div>
+            <div class="time-unit">
+                <div class="number" id="minutes">0</div>
+                <div class="label">Minutos</div>
+            </div>
+        </div>
+
+        <div class="message" id="message"></div>
+        
+        <a href="index.html" class="back-button">Volver al Inicio</a>
+    </div>
+
+    <script>
+        // Fecha de inicio de la relación (ajusta esta fecha)
+        const startDate = new Date('2024-10-20T00:00:00');
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.getElementById('heartsContainer').appendChild(heart);
+
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+
+            const messages = [
+                "Cada segundo contigo es un tesoro 💝",
+                "Nuestro amor crece más cada día 💖",
+                "Juntos escribimos nuestra historia de amor 📖",
+                "Eres mi mejor aventura 🌟",
+                "Contigo, el tiempo vuela 🕊️"
+            ];
+
+            const messageIndex = Math.floor((now.getTime() / 10000) % messages.length);
+            document.getElementById('message').textContent = messages[messageIndex];
+        }
+
+        // Crear corazones cada 2 segundos
+        setInterval(createHeart, 2000);
+
+        // Actualizar el contador cada segundo
+        setInterval(updateTimer, 1000);
+
+        // Inicializar
+        updateTimer();
+        createHeart();
+    </script>
+</body>
+</html>

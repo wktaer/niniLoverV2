@@ -14,6 +14,38 @@
             padding: 0;
             text-align: center;
             overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        .banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #ff69b4, #ff8da1);
+            color: white;
+            padding: 15px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(255, 105, 180, 0.3);
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner h2 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            color: #ff69b4;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 2px solid rgba(255, 105, 180, 0.2);
         }
 
         .main-container {
@@ -29,11 +61,17 @@
 
         .button-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             margin: 30px auto;
             max-width: 900px;
             padding: 0 20px;
+        }
+
+        @media (max-width: 600px) {
+            .button-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Estilo para el fondo animado de corazones */
@@ -910,8 +948,8 @@
         </div>
 
         <div class="content-wrapper">
-            <div class="love-letter" id="menu">
-                <h2>✨ NINILOVER ✨</h2>
+            <div class="banner">
+                <h2> NINILOVER VERSION </h2>
             </div>
 
             <p id="daily-quote">Eres la luz de mi vida. ✨</p>
@@ -919,14 +957,14 @@
             <div class="button-grid">
                 <a href="recuerdos.html" class="button-recuerdos">🌟 Recuerdos</a>
                 <a href="cartas.html" class="button-recuerdos">💌 Cartas</a>
-                <a href="go:time-rela" class="button-recuerdos">⏰ Tiempo de relación</a>
-                <a href="go:chat" class="button-recuerdos">💭 Chat lover</a>
-                <a href="go:14f" class="button-recuerdos">❤️ 14 Febrero</a>
-                <a href="go:playlist" class="button-recuerdos">🎵 Playlist</a>
+                <a href="time.html" class="button-recuerdos">⏰ Tiempo de relación</a>
+                
+                <a href="playlist.html" class="button-recuerdos">🎵 Playlist</a>
                 <a href="songs.html" class="button-recuerdos">💝 Canciones Dedicadas</a>
             </div>
 
     <h2>CALENDARIO NINILOVER</h2>
+
     
 
     <div class="calendar-container">
@@ -934,6 +972,24 @@
             <button onclick="changeMonth(-1)">◁</button>
             <span id="monthYear"></span>
             <button onclick="changeMonth(1)">▷</button>
+        </div>
+
+        <div class="timer-container" style="margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.9); border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
+            <h3 style="color: #ff69b4; margin-bottom: 15px;">Tiempo Juntos 💑</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px;">
+                <div style="background: #fff; padding: 8px; border-radius: 10px;">
+                    <div id="years" style="font-size: 1.8rem; font-weight: bold; color: #ff69b4;">0</div>
+                    <div style="color: #666; font-size: 0.8rem;">Años</div>
+                </div>
+                <div style="background: #fff; padding: 8px; border-radius: 10px;">
+                    <div id="months" style="font-size: 1.8rem; font-weight: bold; color: #ff69b4;">0</div>
+                    <div style="color: #666; font-size: 0.8rem;">Meses</div>
+                </div>
+                <div style="background: #fff; padding: 8px; border-radius: 10px;">
+                    <div id="days" style="font-size: 1.8rem; font-weight: bold; color: #ff69b4;">0</div>
+                    <div style="color: #666; font-size: 0.8rem;">Días</div>
+                </div>
+            </div>
         </div>
         <div class="days">
             <div class="day">Dom</div>
@@ -948,6 +1004,28 @@
         <div class="dates" id="dates"></div>
         <script src="calendar_data.js"></script>
             <script src="calendar.js"></script>
+
+    <script>
+        // Fecha de inicio de la relación
+        const startDate = new Date('2024-10-20T00:00:00');
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+        }
+
+        // Actualizar el contador cada minuto
+        setInterval(updateTimer, 60000);
+        updateTimer(); // Actualización inicial
+    </script>
     </div>
 
     <div class="overlay" id="overlay">
@@ -986,6 +1064,10 @@
     <div class="kawaii-element kawaii-star" style="top: 50px; right: 30px;"></div>
     <div class="kawaii-element kawaii-bow" style="bottom: 30px; left: 40px;"></div>
     <div class="kawaii-element kawaii-star" style="bottom: 50px; right: 50px;"></div>
+
+    <div class="copyright">
+        Página hecha para Karime - 2025
+    </div>
 
     <script>
         // Carrusel automático
