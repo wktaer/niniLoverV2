@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuerdos de Amor para Karime 💖</title>
+   
+    <style>
+        /* Estilo general */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff0f5;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px auto;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        /* Estilo para el fondo animado de corazones */
+        .hearts-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            animation: moveHearts 10s linear infinite;
+        }
+
+        @keyframes moveHearts {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #ff69b4;
+            clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 70%, 20% 100%, 0% 35%);
+            animation: floatHearts 3s infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes floatHearts {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-10px) scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(10px) scale(1);
+                opacity: 0.8;
+            }
+        }
+
+        /* Estilo del menu */
+        .love-letter {
+            background: linear-gradient(135deg, #ffe4e1, #ffd1dc);
+            padding: 30px;
+            border: none;
+            border-radius: 25px;
+            margin: 30px auto;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.2);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .love-letter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid transparent;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #ff69b4, #ff8da1) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            width: 80%;
+            margin: 20px auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel img {
+            min-width: 100%;
+            transition: transform 0.5s ease-in-out;
+            object-fit: cover;
+        }
+
+        .calendar-container {
+            background: linear-gradient(135deg, #fff5f7, #fff);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.15);
+            text-align: center;
+            margin: 40px auto;
+            max-width: 80%;
+            width: 500px;
+            border: 3px solid rgba(255, 105, 180, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-note-form {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 192, 203, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
+        }
+
+        .add-note-form h3 {
+            color: #ff69b4;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .add-note-form input,
+        .add-note-form textarea {
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #ffd1dc;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .add-note-form input:focus,
+        .add-note-form textarea:focus {
+            outline: none;
+            border-color: #ff69b4;
+        }
+
+        .add-note-form button {
+            background: linear-gradient(45deg, #ff69b4, #ff8da1);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .add-note-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .special-date {
+            position: relative;
+            background: linear-gradient(135deg, #ffe4e1, #ffd1dc);
+            color: #ff69b4;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .special-date:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #ffd1dc, #ff8da1);
+        }
+
+        .special-indicator {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            font-size: 0.8em;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .calendar-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 182, 193, 0.2) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .header button {
+            background: linear-gradient(135deg, #ff69b4, #ff8da1);
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        #clock {
+            font-size: 45px;
+            color: #ff1493;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+            margin: 15px 0;
+        }
+
+        .special-date {
+            background: linear-gradient(135deg, #ff69b4, #ff8da1);
+            color: white;
+            cursor: pointer;
+            transform: scale(1.1);
+            box-shadow: 0 2px 5px rgba(255, 105, 180, 0.3);
+        }
+
+        .special-note-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 80%;
+            text-align: center;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .special-phrase {
+            font-size: 1.2em;
+            color: #ff1493;
+            margin: 15px 0;
+        }
+
+        .modal-content button {
+            background: linear-gradient(135deg, #ff69b4, #ff8da1);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-content button:hover {
+            transform: scale(1.1);
+        }
+            letter-spacing: 3px;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulseText 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseText {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .dates {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .date {
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+            background-color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            font-size: 14px;
+            border: 1px solid #ffd1dc;
+        }
+
+        .date.empty {
+            background-color: transparent;
+            border: none;
+            cursor: default;
+        }
+
+        .date:not(.empty):hover {
+            background-color: #ffe4e8;
+            transform: scale(1.1);
+            box-shadow: 0 2px 5px rgba(255, 105, 180, 0.2);
+        }
+
+        .date.special-date {
+            background: linear-gradient(135deg, #ffe4e1, #ffd1dc);
+            color: #ff69b4;
+            font-weight: bold;
+        }
+
+        .date.today {
+            background-color: #ff69b4;
+            color: white;
+            font-weight: bold;
+            border: 2px solid #ff1493;
+        }
+
+        .special-indicator {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            font-size: 12px;
+        }
+
+        .date.special-date::after {
+            content: '❤';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            font-size: 8px;
+            color: #ff69b4;
+        }
+
+        .today {
+            background-color: #ff69b4;
+            color: white;
+            font-weight: bold;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Animaciones kawaii */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Elementos kawaii */
+        .kawaii-element {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            pointer-events: none;
+            z-index: 1;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .kawaii-bow {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 30c-15 0-25 10-25 20s10 20 25 20 25-10 25-20-10-20-25-20z" fill="%23ff69b4"/><path d="M50 35c-8 0-15 6-15 15s7 15 15 15 15-6 15-15-7-15-15-15z" fill="white"/></svg>');
+        }
+
+        .kawaii-star {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 5l10 30h30l-25 20 10 30-25-20-25 20 10-30-25-20h30z" fill="%23ffb6c1"/></svg>');
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        /* Efectos kawaii adicionales */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23fff" opacity="0.8"/></svg>');
+            animation: twinkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1); opacity: 0.8; }
+        }
+
+        /* Mejoras visuales */
+        .love-letter, .calendar-container, .overlay-content {
+            background: linear-gradient(135deg, #fff 0%, #fff5f7 100%);
+            border: 3px solid #ff69b4;
+            transition: all 0.3s ease;
+        }
+
+        .love-letter:hover, .calendar-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.2);
+        }
+
+        /* Decoración Hello Kitty */
+        .hello-kitty-corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23fff"/><circle cx="35" cy="45" r="5" fill="%23000"/><circle cx="65" cy="45" r="5" fill="%23000"/><circle cx="50" cy="55" r="3" fill="%23ffb6c1"/><path d="M30 35q20-10 40 0" stroke="%23ffb6c1" fill="none" stroke-width="3"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 2;
+        }
+
+        .overlay-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            z-index: 1010;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .overlay-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .overlay-content .phrase {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .overlay-content::before,
+        .overlay-content::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ff69b4"/><circle cx="35" cy="40" r="5" fill="white"/><circle cx="65" cy="40" r="5" fill="white"/><path d="M40 60q10 10 20 0" stroke="white" fill="none" stroke-width="3"/></svg>');
+            background-size: contain;
+            z-index: -1;
+        }
+
+        .overlay-content::before {
+            top: -25px;
+            left: -25px;
+            transform: rotate(-30deg);
+        }
+
+        .overlay-content::after {
+            bottom: -25px;
+            right: -25px;
+            transform: rotate(30deg);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Desenfoque del menú */
+        .blurred {
+            filter: blur(5px);
+        }
+
+        .button-recuerdos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px;
+            padding: 15px 25px;
+            background: linear-gradient(45deg, #ff69b4, #ff8da1);
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button-recuerdos::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .button-recuerdos:hover {
+            background-image: linear-gradient(45deg, #ff1493, #ff69b4);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.5);
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .button-recuerdos:hover::before {
+            left: 100%;
+        }
+
+        .button-recuerdos:active {
+            transform: translateY(-2px) scale(0.98);
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .button-recuerdos::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 25px;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .button-recuerdos:hover::after {
+            opacity: 0.4;
+        }
+
+        .button-recuerdos:hover::before {
+            left: 100%;
+        }
+
+        @media (max-width: 600px) {
+            .love-letter {
+                width: 80%;
+                max-width: none;
+                padding: 15px;
+            }
+
+            .carousel {
+                width: 90%;
+            }
+
+            .calendar-container {
+                padding: 10px;
+            }
+
+            .header {
+                font-size: 16px;
+            }
+
+            .days {
+                font-size: 10px;
+            }
+
+            .dates {
+                font-size: 12px;
+            }
+
+            /* Animaciones kawaii */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Elementos kawaii */
+        .kawaii-element {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            pointer-events: none;
+            z-index: 1;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .kawaii-bow {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 30c-15 0-25 10-25 20s10 20 25 20 25-10 25-20-10-20-25-20z" fill="%23ff69b4"/><path d="M50 35c-8 0-15 6-15 15s7 15 15 15 15-6 15-15-7-15-15-15z" fill="white"/></svg>');
+        }
+
+        .kawaii-star {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 5l10 30h30l-25 20 10 30-25-20-25 20 10-30-25-20h30z" fill="%23ffb6c1"/></svg>');
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        /* Efectos kawaii adicionales */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23fff" opacity="0.8"/></svg>');
+            animation: twinkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1); opacity: 0.8; }
+        }
+
+        /* Mejoras visuales */
+        .love-letter, .calendar-container, .overlay-content {
+            background: linear-gradient(135deg, #fff 0%, #fff5f7 100%);
+            border: 3px solid #ff69b4;
+            transition: all 0.3s ease;
+        }
+
+        .love-letter:hover, .calendar-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.2);
+        }
+
+        /* Decoración Hello Kitty */
+        .hello-kitty-corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23fff"/><circle cx="35" cy="45" r="5" fill="%23000"/><circle cx="65" cy="45" r="5" fill="%23000"/><circle cx="50" cy="55" r="3" fill="%23ffb6c1"/><path d="M30 35q20-10 40 0" stroke="%23ffb6c1" fill="none" stroke-width="3"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 2;
+        }
+
+        .overlay-content {
+                width: 90%;
+                max-width: 200px;
+            }
+
+            .overlay-content::before,
+        .overlay-content::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ff69b4"/><circle cx="35" cy="40" r="5" fill="white"/><circle cx="65" cy="40" r="5" fill="white"/><path d="M40 60q10 10 20 0" stroke="white" fill="none" stroke-width="3"/></svg>');
+            background-size: contain;
+            z-index: -1;
+        }
+
+        .overlay-content::before {
+            top: -25px;
+            left: -25px;
+            transform: rotate(-30deg);
+        }
+
+        .overlay-content::after {
+            bottom: -25px;
+            right: -25px;
+            transform: rotate(30deg);
+        }
+
+        .close-btn {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 200px) {
+            .carousel img {
+                height: 100px;
+                object-fit: cover;
+            }
+
+            .overlay-content .phrase {
+                font-size: 14px;
+            }
+        }
+
+        .clock-container {
+            background: linear-gradient(135deg, #FFD1DC, #FFB6C1);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.25);
+            margin: 30px auto;
+            max-width: 400px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 2;
+        }
+
+        .clock-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ff69b4, transparent);
+            border-radius: 25px;
+            z-index: -1;
+            filter: blur(15px);
+            opacity: 0.5;
+        }
+
+        #kitty-icon {
+            width: 100px;
+            height: 100px;
+            background-image: url('https://i.ibb.co/hqZ0z0N/1305059137-removebg-preview.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin: 0 auto 20px auto;
+            display: block;
+        }
+
+        #clock {
+            font-size: 40px;
+            color: #FF69B4;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        #daily-quote {
+            color: #ff1493;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 30px auto;
+            max-width: 80%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hearts-background .image {
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 50px;
+            height: 50px;
+            animation: moveHearts 10s linear infinite;
+            z-index: -1;
+        }
+        .add-note-form {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 192, 203, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
+        }
+
+        .add-note-form h3 {
+            color: #ff69b4;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .add-note-form input,
+        .add-note-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #ffd1dc;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .add-note-form input:focus,
+        .add-note-form textarea:focus {
+            outline: none;
+            border-color: #ff69b4;
+        }
+
+        .add-note-form button {
+            background: linear-gradient(135deg, #ff69b4, #ff8da1);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .add-note-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .add-note-form button:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="clock-container">
+            <div id="kitty-icon"></div>
+            <div id="clock"></div>
+            <div class="timezone"></div>
+        </div>
+
+        <div class="hearts-background">
+            <div class="image" style="top: 5%; left: 5%; animation-duration: 12s; background-image: url('https://i.imgur.com/LhrcLzr.gif');"></div>
+            <div class="image" style="top: 15%; left: 25%; animation-duration: 10s; background-image: url('https://i.imgur.com/LhrcLzr.gif');"></div>
+            <div class="image" style="top: 45%; left: 45%; animation-duration: 8s; background-image: url('https://i.imgur.com/LhrcLzr.gif');"></div>
+            <div class="image" style="top: 65%; left: 65%; animation-duration: 11s; background-image: url('https://i.imgur.com/LhrcLzr.gif');"></div>
+            <div class="image" style="top: 75%; left: 15%; animation-duration: 9s; background-image: url('https://i.imgur.com/LhrcLzr.gif');"></div>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="love-letter" id="menu">
+                <h2>✨ NINILOVER ✨</h2>
+            </div>
+
+            <p id="daily-quote">Eres la luz de mi vida. ✨</p>
+
+            <div class="button-grid">
+                <a href="recuerdos.html" class="button-recuerdos">🌟 Recuerdos</a>
+                <a href="cartas.html" class="button-recuerdos">💌 Cartas</a>
+                <a href="go:time-rela" class="button-recuerdos">⏰ Tiempo de relación</a>
+                <a href="go:chat" class="button-recuerdos">💭 Chat lover</a>
+                <a href="go:14f" class="button-recuerdos">❤️ 14 Febrero</a>
+                <a href="go:playlist" class="button-recuerdos">🎵 Playlist</a>
+                <a href="songs.html" class="button-recuerdos">💝 Canciones Dedicadas</a>
+            </div>
+
+    <h2>CALENDARIO NINILOVER</h2>
+    
+
+    <div class="calendar-container">
+        <div class="header">
+            <button onclick="changeMonth(-1)">◁</button>
+            <span id="monthYear"></span>
+            <button onclick="changeMonth(1)">▷</button>
+        </div>
+        <div class="days">
+            <div class="day">Dom</div>
+            <div class="day">Lun</div>
+            <div class="day">Mar</div>
+            <div class="day">Mié</div>
+            <div class="day">Jue</div>
+            <div class="day">Vie</div>
+            <div class="day">Sáb</div>
+        </div>
+        
+        <div class="dates" id="dates"></div>
+        <script src="calendar_data.js"></script>
+            <script src="calendar.js"></script>
+    </div>
+
+    <div class="overlay" id="overlay">
+        <div class="overlay-content">
+            <button class="close-btn" onclick="closeOverlay()">×</button>
+            <img src="https://via.placeholder.com/300" alt="Imagen sobrepuesta" id="overlayImg">
+            <div class="phrase" id="overlayPhrase">¡Este es un día especial!</div>
+        </div>
+        
+    </div>
+    
+    
+
+<div class="love-letter" id="menu">
+        <h2>ESTA CANCION SIEMPRE SERA NUESTRA</h2>
+         <div style="width: 20%; max-width: 500px; margin: 20px auto;">
+        <img src="https://s3.getstickerpack.com/storage/uploads/sticker-pack/xiong-mao-yi-erdi-san-dan-1/sticker_8.gif?a826bff1c7a1649a13e00b1550f1cc2b" alt="Descripción de la imagen" 
+             style="width: 100%; height: auto;">
+    </div>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/66wkCYWlXzSTQAfnsPBptt?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div>
+            <div>
+
+            </div>
+        </div>
+
+<div>
+    <div>
+        
+    
+    </div>
+</div>
+
+    <!-- Elementos kawaii decorativos -->
+    <div class="kawaii-element kawaii-bow" style="top: 20px; left: 20px;"></div>
+    <div class="kawaii-element kawaii-star" style="top: 50px; right: 30px;"></div>
+    <div class="kawaii-element kawaii-bow" style="bottom: 30px; left: 40px;"></div>
+    <div class="kawaii-element kawaii-star" style="bottom: 50px; right: 50px;"></div>
+
+    <script>
+        // Carrusel automático
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel img');
+
+        function moveCarousel() {
+            currentIndex = (currentIndex + 1) % images.length;
+            const offset = -currentIndex * 100;
+            images.forEach(img => img.style.transform = `translateX(${offset}%)`);
+        }
+        setInterval(moveCarousel, 3000);
+
+        // Frases diarias de amor y función para mostrar notas especiales
+        const loveQuotes = [
+            "Eres mi razón de sonreír cada día. ❤️",
+            "Cada momento contigo es un tesoro. 💎",
+            "Te amo más de lo que las palabras pueden decir. 💕",
+            "Mi corazón late solo por ti. 💓",
+            "Juntos somos invencibles. 🌟",
+            "Tu sonrisa ilumina mi mundo. 😊",
+            "Eres mi inspiración y mi paz. 🌈",
+            "Contigo, cada día es un regalo. 🎁",
+            "Eres la melodía que alegra mi corazón. 🎶",
+            "Mi amor por ti crece cada día más. 🌹"
+        ];
+        const today = new Date().getDate() % loveQuotes.length;
+        document.getElementById('daily-quote').innerText = loveQuotes[today];
+
+        // Función para mostrar notas especiales
+        function showSpecialNote(phrase, imgUrl) {
+            const modal = document.createElement('div');
+            modal.className = 'special-note-modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <img src="${imgUrl}" alt="Momento especial">
+                    <p class="special-phrase">${phrase}</p>
+                    <button onclick="this.parentElement.parentElement.remove()">Cerrar</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Calendario en vivo con notas personalizadas
+        let currentDate = new Date();
+        
+        // Cargar notas guardadas y combinarlas con las predefinidas
+        let specialNotes = {};
+
+        function loadSpecialNotes() {
+            // Primero cargar las notas predefinidas del archivo calendar_data.js
+            const predefinedNotes = window.specialNotes || {};
+            Object.assign(specialNotes, predefinedNotes);
+
+            // Luego cargar las notas guardadas en localStorage
+            const savedNotes = localStorage.getItem('specialNotes');
+            if (savedNotes) {
+                const parsedNotes = JSON.parse(savedNotes);
+                Object.assign(specialNotes, parsedNotes);
+            }
+        }
+
+        function loadSpecialNotes() {
+            const savedNotes = localStorage.getItem('specialNotes');
+            if (savedNotes) {
+                Object.assign(specialNotes, JSON.parse(savedNotes));
+            }
+        }
+
+        function saveSpecialNote(month, day, phrase, img) {
+            const year = currentDate.getFullYear().toString();
+            if (!specialNotes[year]) {
+                specialNotes[year] = {};
+            }
+            if (!specialNotes[year][month]) {
+                specialNotes[year][month] = {};
+            }
+            specialNotes[year][month][day] = { phrase, img };
+            localStorage.setItem('specialNotes', JSON.stringify(specialNotes));
+        }
+
+        function getSpecialNote(month, day, year = currentDate.getFullYear().toString()) {
+            // Buscar primero en las notas guardadas
+            if (specialNotes[year] && specialNotes[year][month] && specialNotes[year][month][day]) {
+                return specialNotes[year][month][day];
+            }
+            return null;
+        }
+
+        function addSpecialNote() {
+            const dateInput = document.getElementById('noteDate');
+            const phraseInput = document.getElementById('notePhrase');
+            const imageInput = document.getElementById('noteImage');
+
+            if (!dateInput.value || !phraseInput.value) {
+                alert('Por favor completa la fecha y la frase');
+                return;
+            }
+
+            const date = new Date(dateInput.value);
+            const month = (date.getMonth() + 1).toString();
+            const day = date.getDate();
+            const imgUrl = imageInput.value || 'https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif';
+
+            saveSpecialNote(month, day, phraseInput.value, imgUrl);
+            renderCalendar();
+
+            // Limpiar el formulario
+            dateInput.value = '';
+            phraseInput.value = '';
+            imageInput.value = '';
+
+            alert('¡Frase guardada con éxito! 💖');
+        }
+
+        // Cargar notas guardadas al iniciar
+        loadSpecialNotes();
+
+        let specialNotes = {};
+
+        function loadSpecialNotes() {
+            const savedNotes = localStorage.getItem('specialNotes');
+            if (savedNotes) {
+                Object.assign(specialNotes, JSON.parse(savedNotes));
+            }
+        }
+
+        function saveSpecialNote(month, day, phrase, img) {
+            const year = currentDate.getFullYear().toString();
+            if (!specialNotes[year]) {
+                specialNotes[year] = {};
+            }
+            if (!specialNotes[year][month]) {
+                specialNotes[year][month] = {};
+            }
+            specialNotes[year][month][day] = { phrase, img };
+            localStorage.setItem('specialNotes', JSON.stringify(specialNotes));
+        }
+
+        function getSpecialNote(month, day, year = currentDate.getFullYear().toString()) {
+            // Buscar primero en las notas guardadas
+            if (specialNotes[year] && specialNotes[year][month] && specialNotes[year][month][day]) {
+                return specialNotes[year][month][day];
+            }
+            return null;
+        }
+
+        function addSpecialNote() {
+            const dateInput = document.getElementById('noteDate');
+            const phraseInput = document.getElementById('notePhrase');
+            const imageInput = document.getElementById('noteImage');
+
+            if (!dateInput.value || !phraseInput.value) {
+                alert('Por favor completa la fecha y la frase');
+                return;
+            }
+
+            const date = new Date(dateInput.value);
+            const month = (date.getMonth() + 1).toString();
+            const day = date.getDate();
+            const imgUrl = imageInput.value || 'https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif';
+
+            saveSpecialNote(month, day, phraseInput.value, imgUrl);
+            renderCalendar();
+
+            // Limpiar el formulario
+            dateInput.value = '';
+            phraseInput.value = '';
+            imageInput.value = '';
+
+            alert('¡Frase guardada con éxito! 💖');
+        }
+
+        // Cargar notas guardadas al iniciar
+        loadSpecialNotes();
+
+        const monthYear = document.getElementById("monthYear");
+        const datesContainer = document.getElementById("dates");
+
+        const monthNames = [
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+
+        let currentDate = new Date();
+
+        function renderCalendar() {
+            const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+            document.getElementById('monthYear').textContent = `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+
+            const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+            const startDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+            const today = new Date();
+            const currentMonth = (currentDate.getMonth() + 1).toString();
+
+            const datesContainer = document.getElementById('dates');
+            datesContainer.innerHTML = '';
+
+            // Agregar celdas vacías para los días antes del primer día del mes
+            for (let i = 0; i < startDay; i++) {
+                const emptyCell = document.createElement('div');
+        emptyCell.classList.add('date', 'empty');
+        datesContainer.appendChild(emptyCell);
+    }
+
+    // Crear los días del mes
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dateElement = document.createElement('div');
+        dateElement.classList.add('date');
+        dateElement.textContent = day;
+
+        const isToday = today.getDate() === day && 
+                       today.getMonth() === currentDate.getMonth() && 
+                       today.getFullYear() === currentDate.getFullYear();
+
+        if (isToday) {
+            dateElement.classList.add('today');
+        }
+
+        // Verificar si hay una nota especial para este día
+        const note = getSpecialNote(currentMonth, day);
+        if (note) {
+            dateElement.classList.add('special-date');
+            dateElement.title = note.phrase;
+            const indicator = document.createElement('span');
+            indicator.classList.add('special-indicator');
+            indicator.innerHTML = '❤️';
+            dateElement.appendChild(indicator);
+        }
+
+        dateElement.addEventListener('click', () => {
+            if (note) {
+                showSpecialNote(note.phrase, note.img);
+            }
+        });
+
+        datesContainer.appendChild(dateElement);
+    }
+}
+
+        function changeMonth(offset) {
+            currentDate.setMonth(currentDate.getMonth() + offset);
+            renderCalendar();
+            // Cargar notas guardadas después de cambiar de mes
+            loadSpecialNotes();
+        }
+
+        function openOverlay(day, isToday, note) {
+            const overlay = document.getElementById("overlay");
+            const menu = document.getElementById("menu");
+            const phrase = document.getElementById("overlayPhrase");
+            const img = document.getElementById("overlayImg");
+
+            if (note) {
+                phrase.innerText = note.phrase;
+                img.src = note.img || "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif";
+            } else {
+                phrase.innerText = `A pesar de la distancia, este ${day} de ${monthNames[currentDate.getMonth()]} me siento más cerca de ti que nunca, porque te llevo siempre en mi corazón. ❤️`;
+                img.src = "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif";
+            }
+
+            menu.classList.add('blurred');
+            overlay.style.display = "flex";
+            overlay.style.opacity = "0";
+            setTimeout(() => {
+                overlay.style.opacity = "1";
+            }, 50);
+        }
+
+        function closeOverlay() {
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("menu").classList.remove('blurred');
+        }
+
+        // Inicializar el calendario y cargar las notas
+        loadSpecialNotes();
+        renderCalendar();
+    </script>
+
+ <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); // Llamar de inmediato para mostrar la hora sin esperar 1 segundo
+    </script>
+    
+    <div>
+        <body>
+            
+        </body>
+    </div>
+    
+</body>
+</html>

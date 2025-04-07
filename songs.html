@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canciones Dedicadas con Amor 💝</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff0f5;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #fff, #ffe4e1);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(255, 105, 180, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: auto; /* Changed from hidden to auto to allow scrolling */
+        }
+
+        .song-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .song-container {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 200px;
+            margin: 10px;
+            background: linear-gradient(135deg, #fff, #ffe4e1);
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 0 10px 20px rgba(255, 105, 180, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .song-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.2);
+        }
+
+        .song-cover {
+            width: 150px;
+            height: 150px;
+            margin: 0;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #111 5%, transparent 6%),
+                repeating-radial-gradient(circle at center, #222 0, #222 1px, transparent 2px, transparent 8px),
+                linear-gradient(45deg, #333 25%, transparent 25%, transparent 75%, #333 75%, #333),
+                linear-gradient(-45deg, #333 25%, transparent 25%, transparent 75%, #333 75%, #333);
+            background-size: auto, auto, 4px 4px, 4px 4px;
+            background-position: center, center, 0 0, 2px 2px;
+            border: 10px solid #333;
+            box-sizing: border-box;
+        }
+
+        .song-cover:hover {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
+
+        .song-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .song-cover:hover img {
+            transform: scale(1.1);
+        }
+
+        .song-details {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .song-container.active .song-details {
+            display: block;
+        }
+
+        .modal {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .modal.hide {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        function togglePlay(songElement, song) {
+            const allSongs = getAllSongs();
+            const allSongElements = document.querySelectorAll('.song-container');
+            
+            allSongs.forEach((s, index) => {
+                if (s.title === song.title) {
+                    s.isPlaying = !s.isPlaying;
+                    const coverElement = allSongElements[index].querySelector('.song-cover');
+                    const iframe = allSongElements[index].querySelector('.audio-element');
+                    
+                    if (s.isPlaying) {
+                        coverElement.classList.add('playing');
+                        iframe.src = s.videoUrl;
+                        createHeartAnimation();
+                    } else {
+                        coverElement.classList.remove('playing');
+                        iframe.src = '';
+                    }
+                } else {
+                    s.isPlaying = false;
+                    const otherCover = allSongElements[index].querySelector('.song-cover');
+                    const otherIframe = allSongElements[index].querySelector('.audio-element');
+                    if (otherCover) otherCover.classList.remove('playing');
+                    if (otherIframe) otherIframe.src = '';
+                }
+            });
+        }
+
+        function displaySongs() {
+            const songList = document.getElementById('songList');
+            const songs = getAllSongs();
+
+            songs.forEach(song => {
+                const songElement = document.createElement('div');
+                songElement.className = 'song-container';
+                songElement.innerHTML = `
+                    <div class="song-header">
+                        <h2 class="song-title">${song.title}</h2>
+                    </div>
+                    <div class="song-cover">
+                        <img src="${song.coverImage}" alt="${song.title} Cover">
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="song-details">
+                        <p class="song-artist">${song.artist}</p>
+                        <p class="song-date">Dedicada el: ${new Date(song.dedicationDate).toLocaleDateString()}</p>
+                        <div class="song-meaning">${song.meaning}</div>
+                        <iframe class="audio-element" src="" width="0" height="0" frameborder="0" allow="autoplay"></iframe>
+                        <div class="special-moment">${song.specialMoment}</div>
+                    </div>
+                `;
+
+                const coverElement = songElement.querySelector('.song-cover');
+                coverElement.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const details = songElement.querySelector('.song-details');
+                    details.style.display = details.style.display === 'none' ? 'block' : 'none';
+                    togglePlay(songElement, song);
+                });
+                
+                songElement.addEventListener('mouseenter', () => {
+                    createHeartAnimation();
+                });
+
+                songList.appendChild(songElement);
+            });
+        }
+
+        // Crear corazones flotantes periódicamente
+        setInterval(createHeartAnimation, 3000);
+
+        // Mostrar las canciones al cargar la página
+        window.onload = displaySongs;
+    </style>
+</head>
+<body>
+    <div id="songList"></div>
+
+    <script src="songs_data.js"></script>
+    <script>
+        function createHeartAnimation() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-animation';
+            heart.textContent = '❤️';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.top = window.innerHeight + 'px';
+            document.body.appendChild(heart);
+
+            const animation = heart.animate([
+                { transform: `translateY(${window.innerHeight}px)` },
+                { transform: 'translateY(-100px)' }
+            ], {
+                duration: 3000,
+                easing: 'ease-out'
+            });
+
+            animation.onfinish = () => heart.remove();
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+
+        function togglePlay(songElement, song) {
+            const allSongs = getAllSongs();
+            const allSongElements = document.querySelectorAll('.song-container');
+            
+            allSongs.forEach((s, index) => {
+                if (s.title === song.title) {
+                    s.isPlaying = !s.isPlaying;
+                    const coverElement = allSongElements[index].querySelector('.song-cover');
+                    const iframe = allSongElements[index].querySelector('.audio-element');
+                    
+                    if (s.isPlaying) {
+                        coverElement.classList.add('playing');
+                        iframe.src = s.videoUrl;
+                        createHeartAnimation();
+                        if (s.isPlayingTwice) {
+                            openModal(song);
+                        }
+                        s.isPlayingTwice = !s.isPlayingTwice;
+                    } else {
+                        coverElement.classList.remove('playing');
+                        iframe.src = '';
+                        closeModal();
+                        s.isPlayingTwice = false;
+                    }
+                } else {
+                    s.isPlaying = false;
+                    const otherCover = allSongElements[index].querySelector('.song-cover');
+                    const otherIframe = allSongElements[index].querySelector('.audio-element');
+                    if (otherCover) otherCover.classList.remove('playing');
+                    if (otherIframe) otherIframe.src = '';
+                    s.isPlayingTwice = false;
+                }
+            });
+        }
+
+
+
+        function displaySongs() {
+            const songList = document.getElementById('songList');
+            const songs = getAllSongs();
+
+            songs.forEach(song => {
+                const songElement = document.createElement('div');
+                songElement.className = 'song-container';
+                songElement.innerHTML = `
+                    <div class="song-header">
+                        <h2 class="song-title">${song.title}</h2>
+                    </div>
+                    <div class="song-cover">
+                        <img src="${song.coverImage}" alt="${song.title} Cover">
+                        <div class="play-button"></div>
+                    </div>
+                    <div class="song-details">
+                        <p class="song-artist">${song.artist}</p>
+                        <p class="song-date">Dedicada el: ${new Date(song.dedicationDate).toLocaleDateString()}</p>
+                        <div class="song-meaning">${song.meaning}</div>
+                        <iframe class="audio-element" src="" width="0" height="0" frameborder="0" allow="autoplay"></iframe>
+                        <div class="special-moment">${song.specialMoment}</div>
+                    </div>
+                `;
+
+                const coverElement = songElement.querySelector('.song-cover');
+                coverElement.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const details = songElement.querySelector('.song-details');
+                    details.style.display = details.style.display === 'none' ? 'block' : 'none';
+                    togglePlay(songElement, song);
+                });
+                
+                songElement.addEventListener('mouseenter', () => {
+                    createHeartAnimation();
+                });
+
+                songList.appendChild(songElement);
+            });
+        }
+
+        // Crear corazones flotantes periódicamente
+        setInterval(createHeartAnimation, 3000);
+
+        // Mostrar las canciones al cargar la página
+        window.onload = displaySongs;
+    </script>
+</body>
+</html>
+
+<style>
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 500px;
+        height: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        overflow: hidden;
+    }
+
+    .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: transparent;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .modal-content .vinyl {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: radial-gradient(circle at center, #111 5%, transparent 6%),
+            repeating-radial-gradient(circle at center, #222 0, #222 1px, transparent 2px, transparent 8px),
+            linear-gradient(45deg, #333 25%, transparent 25%, transparent 75%, #333 75%, #333),
+            linear-gradient(-45deg, #333 25%, transparent 25%, transparent 75%, #333 75%, #333);
+        background-size: auto, auto, 4px 4px, 4px 4px;
+        background-position: center, center, 0 0, 2px 2px;
+        border: 10px solid #333;
+        box-sizing: border-box;
+        animation: spin 3s linear infinite;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .modal-content .vinyl img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    .heart-animation {
+        position: fixed;
+        z-index: 1000;
+    }
+</style>
+
+<script>
+    function openModal(song) {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="vinyl">
+                    <img src="${song.coverImage}" alt="Vinyl Cover" class="vinyl-image">
+                    <div class="arm"></div>
+                </div>
+                <h2>${song.title}</h2>
+                <p>${song.artist}</p>
+                <p>Dedicada el: ${new Date(song.dedicationDate).toLocaleDateString()}</p>
+                <p>${song.meaning}</p>
+                <p>${song.specialMoment}</p>
+                <button onclick="closeModal()" class="close-button">X</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        const modal = document.querySelector('.modal');
+        if (modal) {
+            modal.style.display = 'none';
+            modal.remove();
+            // Stop the music when the modal is closed
+            const iframe = document.querySelector('.audio-element');
+            if (iframe) {
+                iframe.src = '';
+            }
+        }
+    }
+
+    function togglePlay(songElement, song) {
+        const allSongs = getAllSongs();
+        const allSongElements = document.querySelectorAll('.song-container');
+        
+        allSongs.forEach((s, index) => {
+            if (s.title === song.title) {
+                s.isPlaying = !s.isPlaying;
+                const coverElement = allSongElements[index].querySelector('.song-cover');
+                const iframe = allSongElements[index].querySelector('.audio-element');
+                
+                if (s.isPlaying) {
+                    coverElement.classList.add('playing');
+                    iframe.src = s.videoUrl;
+                    createHeartAnimation();
+                    openModal(song);
+                } else {
+                    coverElement.classList.remove('playing');
+                    iframe.src = '';
+                    closeModal();
+                }
+            } else {
+                s.isPlaying = false;
+                const otherCover = allSongElements[index].querySelector('.song-cover');
+                const otherIframe = allSongElements[index].querySelector('.audio-element');
+                if (otherCover) otherCover.classList.remove('playing');
+                if (otherIframe) otherIframe.src = '';
+            }
+        });
+    }
+</script>
