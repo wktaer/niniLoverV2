@@ -24,19 +24,33 @@
 
         .letter-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             max-width: 1200px;
             width: 100%;
-            padding: 20px;
+            padding: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .letter-container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 15px;
+            }
         }
 
         .letter {
             position: relative;
             width: 100%;
-            height: 400px;
+            height: 350px;
             perspective: 1000px;
             cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .letter {
+                height: 300px;
+            }
         }
 
         .letter-back {

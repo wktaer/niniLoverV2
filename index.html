@@ -357,19 +357,24 @@
         }
 
         .date {
-            padding: 10px;
-            text-align: center;
-            border-radius: 8px;
-            background-color: #fff;
             cursor: pointer;
             transition: all 0.3s ease;
-            min-height: 40px;
+            min-height: 35px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             font-size: 14px;
             border: 1px solid #ffd1dc;
+            padding: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .date {
+                min-height: 30px;
+                font-size: 12px;
+                padding: 1px;
+            }
         }
 
         .date.empty {
