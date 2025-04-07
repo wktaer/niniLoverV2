@@ -47,9 +47,11 @@
             line-height: 1.8;
             color: #ff69b4;
             text-align: center;
-            padding: 40px;
+            padding: 20px;
             scrollbar-width: thin;
             scrollbar-color: #ff69b4 #ffe4e1;
+            max-height: 100%;
+            box-sizing: border-box;
         }
 
         .letter-back::-webkit-scrollbar {
@@ -97,16 +99,7 @@
             border: 3px solid #ff69b4;
         }
 
-        .letter-back {
-            background: white;
-            transform: rotateY(180deg);
-            overflow-y: auto;
-            font-size: 0.9em;
-            line-height: 1.6;
-            color: #ff69b4;
-            text-align: left;
-            padding: 30px;
-        }
+
 
         .letter-front::before {
             content: '💌';
