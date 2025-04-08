@@ -315,13 +315,15 @@
                     if (s.isPlaying) {
                         coverElement.classList.add('playing');
                         openModal(song);
-                        // Aseguramos que el iframe se actualice después de que el modal esté visible
+                        // Aseguramos que el iframe se actualice y se muestre después de que el modal esté visible
                         setTimeout(() => {
-                            iframe.src = s.videoUrl;
+                            iframe.style.display = 'block';
+                            iframe.src = `${s.videoUrl}?autoplay=1`;
                             createHeartAnimation();
-                        }, 100);
+                        }, 300);
                     } else {
                         coverElement.classList.remove('playing');
+                        iframe.style.display = 'none';
                         iframe.src = '';
                         closeModal();
                     }
@@ -349,7 +351,7 @@
                     <div class="song-cover">
                         <img src="${song.coverImage}" alt="${song.title} Cover">
                     </div>
-                    <iframe class="audio-element" src="" width="0" height="0" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="audio-element" src="" width="100%" height="80" frameborder="0" style="border-radius: 12px; margin: 15px 0; display: none;" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 `;
 
                 const coverElement = songElement.querySelector('.song-cover');
@@ -536,6 +538,7 @@
                     <div class="vinyl">
                         <img src="${song.coverImage}" alt="Vinyl Cover" class="vinyl-image">
                     </div>
+                    <iframe class="audio-element" style="width: 100%; height: 80px; border: none; margin: 20px 0; display: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
                     <p style="font-size: 1.1em; color: #666;">${song.artist}</p>
                     <p style="font-style: italic; color: #888;">Dedicada el: ${new Date(song.dedicationDate).toLocaleDateString()}</p>
                     <div style="margin: 20px 0; padding: 15px; background: #fff5f8; border-radius: 10px;">
@@ -583,13 +586,15 @@
                 if (s.isPlaying) {
                     coverElement.classList.add('playing');
                     openModal(song);
-                    // Aseguramos que el iframe se actualice después de que el modal esté visible
+                    // Aseguramos que el iframe se actualice y se muestre después de que el modal esté visible
                     setTimeout(() => {
+                        iframe.style.display = 'block';
                         iframe.src = s.videoUrl;
                         createHeartAnimation();
                     }, 100);
                 } else {
                     coverElement.classList.remove('playing');
+                    iframe.style.display = 'none';
                     iframe.src = '';
                     closeModal();
                 }
