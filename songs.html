@@ -310,21 +310,20 @@
                 if (s.title === song.title) {
                     s.isPlaying = !s.isPlaying;
                     const coverElement = allSongElements[index].querySelector('.song-cover');
-                    const iframe = allSongElements[index].querySelector('.audio-element');
+                    const audioElement = allSongElements[index].querySelector('.audio-element');
                     
                     if (s.isPlaying) {
                         coverElement.classList.add('playing');
                         openModal(song);
-                        // Aseguramos que el iframe se actualice y se muestre después de que el modal esté visible
                         setTimeout(() => {
-                            iframe.style.display = 'block';
-                            iframe.src = `${s.videoUrl}?autoplay=1`;
+                            audioElement.style.display = 'block';
+                            audioElement.play();
                             createHeartAnimation();
                         }, 300);
                     } else {
                         coverElement.classList.remove('playing');
-                        iframe.style.display = 'none';
-                        iframe.src = '';
+                        audioElement.pause();
+                        audioElement.style.display = 'none';
                         closeModal();
                     }
                 } else {
@@ -351,7 +350,10 @@
                     <div class="song-cover">
                         <img src="${song.coverImage}" alt="${song.title} Cover">
                     </div>
-                    <iframe class="audio-element" src="" width="100%" height="80" frameborder="0" style="border-radius: 12px; margin: 15px 0; display: none;" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <audio class="audio-element" style="display: none; width: 100%; margin-top: 20px;" controls>
+                <source src="${song.audioUrl}" type="audio/mp3">
+                Tu navegador no soporta el elemento de audio.
+            </audio>
                 `;
 
                 const coverElement = songElement.querySelector('.song-cover');
