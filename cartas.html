@@ -58,16 +58,34 @@
             transform: rotateY(180deg);
             overflow-y: auto;
             color: #ff69b4;
-            text-align: center;
-            padding: 30px;
+            text-align: justify;
+            padding: 15px 20px;
             scrollbar-width: thin;
             scrollbar-color: #ff69b4 #ffe4e1;
             max-height: 100%;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        }
+
+        .letter-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .letter-content p {
+            margin: 0;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .signature {
+            font-style: italic;
+            font-size: 1.2em;
+            margin-top: 20px;
+            text-align: right;
+            color: #ff1493;
         }
 
         .letter-back::-webkit-scrollbar {
@@ -115,8 +133,6 @@
             border: 3px solid #ff69b4;
         }
 
-
-
         .letter-front::before {
             content: '💌';
             font-size: 3em;
@@ -157,36 +173,72 @@
     </style>
 </head>
 <body>
-    <h1>💌 Cartas de Amor 💌</h1>
+    <h1>Cartas de Amor</h1>
     <div class="letter-container">
+        <!-- Carta 1 -->
         <div class="letter">
             <div class="letter-inner">
                 <div class="letter-front"></div>
                 <div class="letter-back">
-                    <p style="font-size: 1.5em; margin-bottom: 20px; font-weight: 600; color: #ff1493;">Mi amor hermoso</p>
-                    <p style="font-size: 1.1em; line-height: 1.6; margin-bottom: 25px; max-width: 80%;">Cada día que paso contigo es un regalo. Tu sonrisa ilumina mi mundo y tu amor hace que mi corazón baile de felicidad.</p>
-                    <p style="font-style: italic; font-size: 1.2em; margin-top: 10px;">Te amo infinitamente,<br>Tu amor ❤️</p>
+                    <div class="letter-content">
+                        <p>Mi amor precioso, cada día me enamoro más de ti. Tu sonrisa ilumina mi mundo y tu amor me da fuerzas para seguir adelante. Eres mi inspiración, mi razón de ser mejor cada día. Cuando estoy contigo, todo cobra sentido y los problemas desaparecen. Me encanta cómo me miras, cómo me abrazas, y cómo haces que mi corazón lata más fuerte con solo estar cerca. Eres el regalo más hermoso que la vida me ha dado y agradezco cada momento que paso a tu lado. Te amo con todo mi corazón y siempre estaré aquí para ti, en las buenas y en las malas, porque juntos somos más fuertes.</p>
+                        <p class="signature">Te amo infinitamente,<br>Tu amor ❤️</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="letter">
-            <div class="letter-inner">
-                <div class="letter-front"></div>
-                <div class="letter-back">
-                    <p style="font-size: 1.5em; margin-bottom: 20px; font-weight: 600; color: #ff1493;">Mi dulce princesa</p>
-                    <p style="font-size: 1.1em; line-height: 1.6; margin-bottom: 25px; max-width: 80%;">Eres el sueño más hermoso hecho realidad. Cada momento a tu lado es mágico y especial.</p>
-                    <p style="font-style: italic; font-size: 1.2em; margin-top: 10px;">Con todo mi amor,<br>Tu amor eterno 💕</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="hearts-background">
-        <div class="heart" style="top: 20%; left: 10%;"></div>
-        <div class="heart" style="top: 40%; left: 30%;"></div>
-        <div class="heart" style="top: 60%; left: 50%;"></div>
-        <div class="heart" style="top: 80%; left: 70%;"></div>
-        <div class="heart" style="top: 30%; left: 90%;"></div>
+        <!-- Carta 2 -->
+        <div class="letter">
+            <div class="letter-inner">
+                <div class="letter-front"></div>
+                <div class="letter-back">
+                    <div class="letter-content">
+                        <p>Mi dulce amor, no hay palabras suficientes para expresar lo que siento por ti. Cada mañana despierto con una sonrisa porque sé que existes en mi vida. Eres mi compañera perfecta, mi mejor amiga, mi confidente y mi amor eterno. Me encantas en todos los sentidos: tu forma de ser, tu personalidad única, tu bondad infinita. Contigo he aprendido que el amor verdadero existe y que cada día puede ser más hermoso que el anterior. Gracias por elegirme, por amarme y por hacer de mi vida una aventura maravillosa.</p>
+                        <p class="signature">Te amo infinitamente,<br>Tu amor ❤️</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carta 3 -->
+        <div class="letter">
+            <div class="letter-inner">
+                <div class="letter-front"></div>
+                <div class="letter-back">
+                    <div class="letter-content">
+                        <p>Mi princesa hermosa, cada día me sorprendes con tu forma de ser tan especial. Eres la persona más maravillosa que he conocido, con un corazón tan grande y puro que me deja sin palabras. Me encanta cómo te preocupas por los demás, cómo luchas por tus sueños y cómo haces que todo sea mejor con tu presencia. Eres mi motivación para ser mejor persona, mi razón para sonreír y mi compañera de vida. No puedo imaginar un futuro sin ti, porque tú eres mi presente y mi eternidad.</p>
+                        <p class="signature">Te amo infinitamente,<br>Tu amor ❤️</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carta 4 -->
+        <div class="letter">
+            <div class="letter-inner">
+                <div class="letter-front"></div>
+                <div class="letter-back">
+                    <div class="letter-content">
+                        <p>Mi amor bonito, cada momento contigo es un regalo precioso. Me encanta cómo me haces sentir, cómo me cuidas y cómo me demuestras tu amor de mil formas diferentes. Eres mi refugio en los días difíciles, mi alegría en los momentos felices y mi paz en medio del caos. Tu amor me hace más fuerte, más valiente y más feliz. Gracias por compartir tu vida conmigo, por ser mi compañera de aventuras y por hacer que cada día sea especial. No hay nadie como tú en este mundo.</p>
+                        <p class="signature">Te amo infinitamente,<br>Tu amor ❤️</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carta 5 -->
+        <div class="letter">
+            <div class="letter-inner">
+                <div class="letter-front"></div>
+                <div class="letter-back">
+                    <div class="letter-content">
+                        <p>Mi tesoro precioso, eres lo mejor que me ha pasado en la vida. Cada día descubro algo nuevo que me hace amarte más. Tu forma de reír, tu manera de ver la vida, tu capacidad de hacer que todo sea mejor... todo en ti es perfecto. Me siento el hombre más afortunado del mundo por tenerte a mi lado. Contigo he aprendido que el amor verdadero no solo existe en los cuentos de hadas, sino que puede ser aún más hermoso en la vida real. Gracias por ser mi compañera, mi amor y mi todo.</p>
+                        <p class="signature">Te amo infinitamente,<br>Tu amor ❤️</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -196,21 +248,19 @@
             });
         });
 
-        // Crear corazones flotantes dinámicamente
-        function createFloatingHearts() {
-            const heartsBackground = document.querySelector('.hearts-background');
+        function createHeart() {
             const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
-            heartsBackground.appendChild(heart);
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(heart);
 
             setTimeout(() => {
                 heart.remove();
             }, 5000);
         }
 
-        setInterval(createFloatingHearts, 2000);
+        setInterval(createHeart, 300);
     </script>
 </body>
 </html>
