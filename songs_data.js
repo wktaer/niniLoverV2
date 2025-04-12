@@ -53,11 +53,10 @@ const songs = [
         {
             title: "That's What I Like",
             artist: "Bruno Mars",
-            meaning: "karime cada vez que escucho esta canción no puedo evitar pensar en todos esos momentos felices que compartimos esos momentos donde solo existimos tú y yo donde la música nos envuelve y nos hace bailar sin preocupaciones y es que contigo todo se siente más liviano más alegre más especial cada vez que estás a mi lado mi vida se llena de ritmo de energía de felicidad le dedico esta canción porque me haces sentir lo que la letra dice me haces sentir que no hay nada mejor que pasar tiempo contigo que hacer cosas juntos que disfrutar de la vida a tu lado porque cuando estoy contigo todo lo que quiero es verte sonreír verte feliz y ser parte de esa alegría que traes a mi vida tú eres mi razón para sonreír mi razón para seguir, mi regalona linda :3. ",
+            meaning: "karime cada vez que escucho esta canción no puedo evitar pensar en todos esos momentos felices que compartimos esos momentos donde solo existimos tú y yo donde la música nos envuelve y nos hace bailar sin preocupaciones y es que contigo todo se siente más liviano más alegre más especial cada vez que estás a mi lado mi vida se llena de ritmo de energía de felicidad le dedico esta canción porque me haces sentir lo que la letra dice me haces sentir que no hay nada mejor que pasar tiempo contigo que hacer cosas juntos que disfrutar de la vida a tu lado porque cuando estoy contigo todo lo que quiero es verte sonreír verte feliz y ser parte de esa alegría que traes a mi vida tú eres mi razón para sonreír mi razón para seguir, mi regalona linda :3, esta cancion es muy horno 120 grados amorcito jj muy yo <3. ",
             dedicationDate: "2024-03-31",
             audioUrl: "songs/thats_what_i_like.mp3",
             coverImage: "https://i.ibb.co/Ld17MPPv/IMG-20250123-WA0048.jpg",
-            specialMoment: "Cada baile, cada risa, cada momento contigo es justo lo que más me gusta de la vida. Eres mi felicidad.",
             isPlaying: false
         },
         {
