@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canciones Dedicadas con Amor 💝</title>
+    <title>Te la dedique porque</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -128,12 +128,15 @@
         }
 
         @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from { transform: rotate3d(0, 0, 1, 0deg); }
+            to { transform: rotate3d(0, 0, 1, 360deg); }
         }
 
         .vinyl.playing {
-            animation: rotate 20s linear infinite;
+            animation: rotate 3s linear infinite;
+            transform-origin: center;
+            backface-visibility: hidden;
+            will-change: transform;
         }
 
         body.modal-open {
@@ -153,8 +156,9 @@
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            overflow-y: auto;
-            padding: 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            padding: 20px 0;
             box-sizing: border-box;
         }
 
@@ -163,24 +167,100 @@
             border-radius: 20px;
             padding: 25px;
             width: 90%;
-            max-width: 500px;
-            margin: 20px auto;
+            max-width: 800px;
             position: relative;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin: 20px auto;
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
         }
 
+        .modal.show .modal-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
         .modal-body {
             display: flex;
             flex-direction: column;
             align-items: center;
+            flex: 1;
+        }
+
+        .lyrics-panel {
+            flex: 1;
+            padding: 20px;
+            border-left: 1px solid #ddd;
+            max-height: 500px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .lyrics-text {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+            text-align: center;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .lyrics-text.active {
+            color: #ff69b4;
+            font-weight: bold;
+            transform: scale(1.05);
         }
 
         .vinyl-container {
             width: 220px;
             height: 220px;
             margin: 15px auto;
+            position: relative;
         }
 
+        .tonearm {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: 15px;
+            background: linear-gradient(to bottom, #666, #333);
+            transform-origin: right center;
+            transform: rotate(-20deg);
+            border-radius: 5px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .tonearm::before {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: -5px;
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle at center, #888, #444);
+            border-radius: 50%;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .tonearm::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 15px;
+            height: 20px;
+            background: linear-gradient(to right, #555, #333);
+            transform: rotate(25deg);
+            border-radius: 2px;
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
         .vinyl {
             width: 200px;
             height: 200px;
@@ -315,36 +395,48 @@
             .song-title {
                 font-size: 1.1em;
             }
+            .mi-gif {
+      position: absolute; /* Esto permite ubicarlo donde quieras */
+      top: 50px;           /* Distancia desde la parte superior */
+      left: 100px;         /* Distancia desde la izquierda */
+      width: 30px;        /* Tamaño del gif (ajusta el valor aquí) */
+      height: 30px;        /* Mantiene la proporción del gif */
+      z-index: 10;         /* Opcional, por si se superpone con algo */
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Canciones Dedicadas con Amor 💝</h1>
-        <p>Cada canción es un pedacito de mi corazón para ti</p>
+        <h1>Te la dedique porque.</h1>
+        
+    
     </div>
 
     <div id="songList" class="song-list"></div>
 
     <div id="songModal" class="modal">
+        
         <div class="modal-content">
             <div class="modal-body">
                 <div class="vinyl-container">
+                    <div class="tonearm"></div>
                     <div class="vinyl">
-                        <img src="" alt="Cover" id="modalCover">
+                        <img id="modalCover" src="" alt="Portada de la canción">
                     </div>
                 </div>
-                <div class="song-details">
-                    <h2 id="modalTitle"></h2>
-                    <p id="modalMessage"></p>
-                    <audio id="modalAudio" class="audio-element" autoplay></audio>
-                </div>
+                <h2 id="modalTitle" class="song-title"></h2>
+                <p id="modalArtist" class="song-artist"></p>
+                <p id="modalMeaning" class="song-meaning"></p>
+                <p id="modalSpecialMoment" class="special-moment"></p>
+                <audio id="audioPlayer" controls></audio>
             </div>
             <button class="close-button">×</button>
         </div>
     </div>
 
     <script src="songs_data.js"></script>
+    <script src="lyrics.js"></script>
+    <script src="player.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const songList = document.getElementById('songList');
@@ -367,23 +459,42 @@
             });
 
             closeButton.addEventListener('click', () => {
-                modal.style.display = 'none';
-                document.body.classList.remove('modal-open');
-                audio.pause();
-                audio.src = '';
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    document.body.classList.remove('modal-open');
+                    pauseSong();
+                }, 300);
             });
         });
 
         function openModal(song) {
-            document.getElementById('songModal').style.display = 'flex';
+            const modal = document.getElementById('songModal');
+            modal.style.display = 'flex';
             document.body.classList.add('modal-open');
-            document.getElementById('modalTitle').textContent = `${song.title} - ${song.artist}`;
-            document.getElementById('modalMessage').textContent = song.meaning;
-            document.getElementById('modalCover').src = song.coverImage;
-            const audio = document.getElementById('modalAudio');
-            audio.src = song.audioUrl;
-            audio.play();
+            loadAndPlaySong(song);
+            // Agregar la clase show después de un pequeño retraso para activar la animación
+            requestAnimationFrame(() => {
+                modal.style.opacity = '1';
+                document.querySelector('.vinyl').classList.add('playing');
+            });
+            
+            // Detener la animación cuando se pausa la música
+            audio.addEventListener('pause', () => {
+                document.querySelector('.vinyl').classList.remove('playing');
+            });
+            
+            // Reanudar la animación cuando se reproduce la música
+            audio.addEventListener('play', () => {
+                document.querySelector('.vinyl').classList.add('playing');
+            });
         }
     </script>
+    <p>Cada canción es un pedacito de mi corazón para ti</p>
 </body>
 </html>
+
+.vinyl.playing + .tonearm {
+    transform: rotate(0deg);
+    transition: transform 0.5s ease;
+}
