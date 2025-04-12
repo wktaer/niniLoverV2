@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     audioPlayer = document.getElementById('audioPlayer');
     lyricsPanel = document.createElement('div');
     lyricsPanel.className = 'lyrics-panel';
+    lyricsPanel.style.cssText = 'max-height: 300px; overflow-y: auto; padding: 10px; scroll-behavior: smooth;';
     document.querySelector('.modal-content').appendChild(lyricsPanel);
 
     // Evento para actualizar la letra cuando cambia el tiempo de reproducción
@@ -60,6 +61,7 @@ function updateLyrics() {
 
     const currentTime = audioPlayer.currentTime;
     const lyrics = document.querySelectorAll('.lyrics-text');
+    let activeLineFound = false;
 
     lyrics.forEach(line => {
         const time = parseFloat(line.dataset.time);
@@ -67,7 +69,20 @@ function updateLyrics() {
 
         if (currentTime >= time && currentTime < nextTime) {
             line.classList.add('active');
-            line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (!activeLineFound) {
+                // Calcula la posición para centrar la línea activa
+                const containerHeight = lyricsPanel.clientHeight;
+                const lineOffset = line.offsetTop;
+                const lineHeight = line.offsetHeight;
+                const scrollTo = lineOffset - (containerHeight / 2) + (lineHeight / 2);
+                
+                // Aplica el scroll suave
+                lyricsPanel.scrollTo({
+                    top: scrollTo,
+                    behavior: 'smooth'
+                });
+                activeLineFound = true;
+            }
         } else {
             line.classList.remove('active');
         }
