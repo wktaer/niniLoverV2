@@ -146,473 +146,255 @@
         }
 
         .song-details {
-            display: none;
+            padding: 20px;
+            text-align: center;
         }
 
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .vinyl.playing {
+            animation: rotate 20s linear infinite;
+        }
+    </style>
+
+    <div id="songModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="vinyl-container">
+                    <div class="vinyl">
+                        <img src="" alt="Cover" id="modalCover">
+                    </div>
+                </div>
+                <div class="song-details">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalMessage"></p>
+                    <audio id="modalAudio" class="audio-element" autoplay></audio>
+                </div>
+            </div>
+            <button class="close-button">×</button>
+        </div>
+    </div>
+
+        <style>
         .modal {
-            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            z-index: 9999;
-            display: flex;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
             align-items: center;
             justify-content: center;
+            z-index: 1000;
         }
 
         .modal-content {
             position: relative;
-            background: white;
-            padding: 0;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            width: calc(100% - 40px);
-            max-width: 500px;
-            max-height: 80vh;
+            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 800px;
             margin: 20px auto;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transform: translateZ(0);
+            z-index: 1001;
+        }
+
+        .modal-body {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .vinyl-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            perspective: 1000px;
+            margin: 30px auto;
+        }
+
+        .modal-content .vinyl {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, #111 8%, transparent 9%),
+                repeating-radial-gradient(circle at center, #222 0, #222 1px, transparent 2px, transparent 8px),
+                linear-gradient(45deg, #333 25%, transparent 25%, transparent 75%, #333 75%, #333);
+            background-size: auto, auto, 6px 6px;
+            background-position: center, center, 0 0;
+            border: 12px solid #222;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5), inset 0 0 80px rgba(0,0,0,0.7);
+            transition: transform 0.5s ease;
             box-sizing: border-box;
+            animation: none;
+            position: relative;
+            margin: 0 auto;
         }
 
-        body.modal-open {
-            overflow: hidden;
+        .modal-content .vinyl.playing {
+            animation: spin 3s linear infinite;
+            transform-origin: center center;
         }
-        margin: 20px;
-        text-align: center;
-        transform: translateY(-20px);
-        transition: transform 0.3s ease;
-        animation: modalAppear 0.3s ease forwards;
-    }
 
-    @keyframes modalAppear {
-        from {
-            opacity: 0;
-            transform: translateY(-50px);
+        @keyframes spin {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(360deg) translateZ(0); }
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+
+        .modal-content .vinyl.playing + .tonearm {
+            transform: rotate(0deg);
         }
-    }
 
-    .modal.show .modal-content {
-        transform: translateY(0);
-    }
+        .tonearm {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 100px;
+            height: 15px;
+            background: linear-gradient(to right, #444, #666);
+            transform-origin: right center;
+            transform: rotate(-20deg);
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            z-index: 2;
+            transition: transform 0.5s ease;
+        }
 
-    .close-button {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: #ff1493;
-        border: none;
-        color: white;
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        font-size: 28px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        z-index: 1002;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
+        .tonearm::before {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: #777;
+            border-radius: 50%;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+        }
 
-    .close-button:hover {
-        transform: scale(1.1);
-        background: #ff69b4;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-    }
-    .modal-content .vinyl {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        background: radial-gradient(circle at center, #111 5%, transparent 6%),
-            repeating-radial-gradient(circle at center, #222 0, #222 1px, transparent 2px, transparent 8px),
-            linear-gradient(45deg, #333 25%, transparent 25%, transparent 75%, #333 75%, #333),
-            linear-gradient(-45deg, #333 25%, transparent 25%, transparent 75%, #333 75%, #333);
-        background-size: auto, auto, 4px 4px, 4px 4px;
-        background-position: center, center, 0 0, 2px 2px;
-        border: 10px solid #333;
-        box-sizing: border-box;
-        animation: spin 3s linear infinite;
-        position: relative;
-        overflow: hidden;
-    }
+        .tonearm::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background: #999;
+            border-radius: 50%;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
 
-    .modal-content .vinyl img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+        .modal-content .vinyl img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
 
-    @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
+        .modal-content .vinyl:hover {
+            transform: scale(1.05);
+        }
 
-    .heart-animation {
-        position: fixed;
-        z-index: 1000;
-    }
-</style>
+        .modal-content .vinyl:hover img {
+            transform: scale(1.1);
+        }
+
+        .modal-content .song-details {
+            padding: 25px;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .modal-content .song-details h2 {
+            color: #ff69b4;
+            margin: 10px 0;
+            font-size: 1.5em;
+        }
+
+        .modal-content .song-details p {
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff1493;
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1002;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-button:hover {
+            transform: scale(1.1);
+            background: #ff69b4;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .heart-animation {
+            position: fixed;
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
-    <h1 style="text-align: center; color: #ff69b4; margin: 30px 0; font-size: 2em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);">Razon por la cual te dedique..</h1>
-    <div style="text-align: center; margin: 20px 0;">
-        <img src="https://i.pinimg.com/originals/0a/97/24/0a9724457edc2bf7266e768686683d62.gif" alt="Corazón musical" style="max-width: 200px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <h1 style="text-align: center; color: #ff69b4; margin: 30px 0; font-size: 2em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);">Te la dedique porque...</h1>
+
+    <div id="songList" class="song-list"></div>
+
+    <!-- Modal para mostrar detalles de la canción -->
+    <div id="songModal" class="modal">
+        <div class="modal-content">
+            <button class="close-button">&times;</button>
+            <div class="vinyl-container">
+                <div class="vinyl">
+                    <img id="modalCover" src="" alt="Portada de la canción">
+                </div>
+                <div class="tonearm"></div>
+            </div>
+            <div class="song-details">
+                <h2 id="modalTitle"></h2>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
     </div>
-    <div id="songList"></div>
-
-    <script src="songs_data.js"></script>
-    <script>
-        function createHeartAnimation() {
-            const heart = document.createElement('div');
-            heart.className = 'heart-animation';
-            heart.textContent = '❤️';
-            heart.style.left = Math.random() * window.innerWidth + 'px';
-            heart.style.top = window.innerHeight + 'px';
-            document.body.appendChild(heart);
-
-            const animation = heart.animate([
-                { transform: `translateY(${window.innerHeight}px)` },
-                { transform: 'translateY(-100px)' }
-            ], {
-                duration: 3000,
-                easing: 'ease-out'
-            });
-
-            animation.onfinish = () => heart.remove();
-        }
-
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = Math.floor(seconds % 60);
-            return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-        }
-
-        function togglePlay(songElement, song) {
-            const allSongs = getAllSongs();
-            const allSongElements = document.querySelectorAll('.song-container');
-            
-            allSongs.forEach((s, index) => {
-                if (s.title === song.title) {
-                    s.isPlaying = !s.isPlaying;
-                    const coverElement = allSongElements[index].querySelector('.song-cover');
-                    const audioElement = allSongElements[index].querySelector('.audio-element');
-                    
-                    if (s.isPlaying) {
-                        coverElement.classList.add('playing');
-                        openModal(song);
-                        setTimeout(() => {
-                            audioElement.style.display = 'block';
-                            audioElement.play();
-                            createHeartAnimation();
-                        }, 300);
-                    } else {
-                        coverElement.classList.remove('playing');
-                        audioElement.pause();
-                        audioElement.style.display = 'none';
-                        closeModal();
-                    }
-                } else {
-                    s.isPlaying = false;
-                    const otherCover = allSongElements[index].querySelector('.song-cover');
-                    const otherIframe = allSongElements[index].querySelector('.audio-element');
-                    if (otherCover) otherCover.classList.remove('playing');
-                    if (otherIframe) otherIframe.src = '';
-                }
-            });
-        }
-
-
-
-        function displaySongs() {
-            const songList = document.getElementById('songList');
-            const songs = getAllSongs();
-
-            songs.forEach(song => {
-                const songElement = document.createElement('div');
-                songElement.className = 'song-container';
-                songElement.innerHTML = `
-                    <h2 class="song-title">${song.title}</h2>
-                    <div class="song-cover">
-                        <img src="${song.coverImage}" alt="${song.title} Cover">
-                    </div>
-                    <audio class="audio-element" style="display: none; width: 100%; margin-top: 20px;" controls>
-                <source src="${song.audioUrl}" type="audio/mp3">
-                Tu navegador no soporta el elemento de audio.
-            </audio>
-                `;
-
-                const coverElement = songElement.querySelector('.song-cover');
-                coverElement.addEventListener('click', () => {
-                    togglePlay(songElement, song);
-                });
-                
-                songElement.addEventListener('mouseenter', () => {
-                    createHeartAnimation();
-                });
-
-                songList.appendChild(songElement);
-            });
-        }
-
-        // Crear corazones flotantes periódicamente
-        setInterval(createHeartAnimation, 3000);
-
-        // Mostrar las canciones al cargar la página
-        window.onload = displaySongs;
-    </script>
+    <p style="text-align: center; color: #666; margin-bottom: 40px; max-width: 800px; line-height: 1.6; padding: 0 20px;">Cada canción aquí tiene un significado especial, representa un momento único de nuestro amor, y se que son solo melodías, pero creame mi algodon de azucar que hablan de todo lo que siento, de todos nuestros momentos juntos y de todo lo que significas para mí, mi niña, mi princesa, mi tesorito :3</p>
+    <script src="./songs_data.js"></script>
+    <script src="./player.js"></script>
 </body>
 </html>
-
-<style>
-    /* Modal styles */
-    .modal {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 80%;
-        max-width: 600px;
-        max-height: 80vh;
-        background-color: rgba(255, 255, 255, 0.95);
-        border-radius: 15px;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-        overflow-y: auto;
-    }
-
-    .modal-content {
-        position: relative;
-        background: white;
-        padding: 0;
-        border-radius: 25px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        width: 90%;
-        max-width: 500px;
-        max-height: 80vh;
-        margin: 20px auto;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .modal-header {
-        position: sticky;
-        top: 0;
-        background: linear-gradient(45deg, #ff69b4, #ff8da1);
-        color: white;
-        padding: 15px;
-        text-align: center;
-        z-index: 1001;
-        border-radius: 25px 25px 0 0;
-    }
-
-    .modal-body {
-        padding: 20px;
-        overflow-y: auto;
-        flex-grow: 1;
-    }
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    }
-
-    .close-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: #ff1493;
-        border: none;
-        color: white;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        font-size: 24px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        z-index: 1002;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    .close-button:hover {
-        transform: scale(1.1);
-        background: #ff69b4;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-    }
-    .modal-content .vinyl {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        background: radial-gradient(circle at center, #111 5%, transparent 6%),
-            repeating-radial-gradient(circle at center, #222 0, #222 1px, transparent 2px, transparent 8px),
-            linear-gradient(45deg, #333 25%, transparent 25%, transparent 75%, #333 75%, #333),
-            linear-gradient(-45deg, #333 25%, transparent 25%, transparent 75%, #333 75%, #333);
-        background-size: auto, auto, 4px 4px, 4px 4px;
-        background-position: center, center, 0 0, 2px 2px;
-        border: 10px solid #333;
-        box-sizing: border-box;
-        animation: spin 3s linear infinite;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .modal-content .vinyl img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-
-    @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-
-    .heart-animation {
-        position: fixed;
-        z-index: 1000;
-    }
-</style>
-
-<script>
-    // Modal functionality without dragging
-    function showModal(song) {
-        const modal = document.createElement('div');
-        modal.className = 'modal';
-        modal.innerHTML = `
-            <div class="modal-header">
-                <h2>${song.title}</h2>
-            </div>
-            <div class="modal-content">
-                <div class="vinyl">
-                    <img src="${song.image}" alt="${song.title}">
-                </div>
-                <iframe class="audio-element" width="100%" height="80" src="${song.url}" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                <p style="font-size: 1.1em; line-height: 1.6;">${song.meaning}</p>
-                <p style="font-size: 1.1em; line-height: 1.6; margin-top: 10px;">${song.specialMoment}</p>
-                <button onclick="closeModal()" class="close-button">×</button>
-            </div>
-        `;
-        document.body.appendChild(modal);
-    }
-
-    function openModal(song) {
-        closeModal();
-        document.body.classList.add('modal-open');
-        
-        const modal = document.createElement('div');
-        modal.className = 'modal';
-        modal.style.display = 'block';
-        modal.innerHTML = `
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 style="margin: 0;">${song.title}</h2>
-                </div>
-                <div class="modal-body">
-                    <div class="vinyl">
-                        <img src="${song.coverImage}" alt="Vinyl Cover" class="vinyl-image">
-                    </div>
-                    <iframe class="audio-element" style="width: 100%; height: 80px; border: none; margin: 20px 0; display: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
-                    <p style="font-size: 1.1em; color: #666;">${song.artist}</p>
-                    <p style="font-style: italic; color: #888;">Dedicada el: ${new Date(song.dedicationDate).toLocaleDateString()}</p>
-                    <div style="margin: 20px 0; padding: 15px; background: #fff5f8; border-radius: 10px;">
-                        <p style="font-size: 1.1em; line-height: 1.6;">${song.meaning}</p>
-                        <p style="font-size: 1.1em; line-height: 1.6; margin-top: 10px;">${song.specialMoment}</p>
-                    </div>
-                </div>
-                <button onclick="closeModal()" class="close-button">×</button>
-            </div>
-        `;
-        document.body.appendChild(modal);
-    }
-
-    function closeModal() {
-        const modal = document.querySelector('.modal');
-        if (modal) {
-            // Detener la reproducción y limpiar el iframe
-            const allSongs = getAllSongs();
-            const allSongElements = document.querySelectorAll('.song-container');
-            
-            allSongs.forEach((song, index) => {
-                song.isPlaying = false;
-                const coverElement = allSongElements[index].querySelector('.song-cover');
-                const iframe = allSongElements[index].querySelector('.audio-element');
-                if (coverElement) coverElement.classList.remove('playing');
-                if (iframe) iframe.src = '';
-            });
-
-            modal.style.display = 'none';
-            modal.remove();
-            document.body.classList.remove('modal-open');
-        }
-    }
-
-    function togglePlay(songElement, song) {
-        const allSongs = getAllSongs();
-        const allSongElements = document.querySelectorAll('.song-container');
-        
-        allSongs.forEach((s, index) => {
-            if (s.title === song.title) {
-                s.isPlaying = !s.isPlaying;
-                const coverElement = allSongElements[index].querySelector('.song-cover');
-                const iframe = allSongElements[index].querySelector('.audio-element');
-                
-                if (s.isPlaying) {
-                    coverElement.classList.add('playing');
-                    openModal(song);
-                    // Aseguramos que el iframe se actualice y se muestre después de que el modal esté visible
-                    setTimeout(() => {
-                        iframe.style.display = 'block';
-                        iframe.src = s.videoUrl;
-                        createHeartAnimation();
-                    }, 100);
-                } else {
-                    coverElement.classList.remove('playing');
-                    iframe.style.display = 'none';
-                    iframe.src = '';
-                    closeModal();
-                }
-            } else {
-                s.isPlaying = false;
-                const otherCover = allSongElements[index].querySelector('.song-cover');
-                const otherIframe = allSongElements[index].querySelector('.audio-element');
-                if (otherCover) otherCover.classList.remove('playing');
-                if (otherIframe) otherIframe.src = '';
-            }
-        });
-    }
-</script>
-
-<body>
-    <h1 style="text-align: center; color: #ff69b4; margin-bottom: 30px; font-size: 2em; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);"></h1>
-    <p style="text-align: center; color: #666; margin-bottom: 40px; max-width: 800px; line-height: 1.6;">Cada canción aquí tiene un significado especial, representa un momento único de nuestro amor, y se que son solo melodías, pero creame que hablan de todo lo que siento, de todos nuestros momentos juntos y de todo lo que significas para mí, mi niña, mi princesa, mi tesorito :3 </p>
-    <div class="song-list">
-</body>
