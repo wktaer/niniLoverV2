@@ -195,11 +195,28 @@
             flex: 1;
             padding: 20px;
             border-left: 1px solid #ddd;
-            max-height: 500px;
-            overflow-y: auto;
+            max-height: 60vh;
+            overflow-y: scroll;
             display: flex;
             flex-direction: column;
             gap: 10px;
+            scrollbar-width: thin;
+            scrollbar-color: #ff69b4 #ffe4e1;
+        }
+
+        .lyrics-panel::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .lyrics-panel::-webkit-scrollbar-track {
+            background: #ffe4e1;
+            border-radius: 10px;
+        }
+
+        .lyrics-panel::-webkit-scrollbar-thumb {
+            background-color: #ff69b4;
+            border-radius: 10px;
+            border: 2px solid #ffe4e1;
         }
 
         .lyrics-text {
@@ -360,42 +377,70 @@
             }
 
             .modal-content {
-                padding: 20px;
-                margin: 10px auto;
+                flex-direction: column;
+                padding: 15px;
+                margin: 20px auto;
+                max-height: 90vh;
+                overflow-y: auto;
             }
 
             .vinyl-container {
-                width: 180px;
-                height: 180px;
+                width: 160px;
+                height: 160px;
+                margin: 10px auto;
             }
 
             .vinyl {
-                width: 160px;
-                height: 160px;
+                width: 140px;
+                height: 140px;
             }
 
-            .song-details h2 {
-                font-size: 1.3em;
+            .tonearm {
+                width: 80px;
+                top: 15px;
+                right: 15px;
             }
 
-            .song-details p {
-                font-size: 1em;
+            .modal-body {
+                padding: 10px;
             }
 
-            .close-button {
-                width: 25px;
-                height: 25px;
-                font-size: 18px;
+            .lyrics-panel {
+                padding: 10px;
+                border-left: none;
+                border-top: 1px solid #ddd;
+                margin-top: 15px;
+                max-height: 40vh;
             }
 
-            .song-cover {
-                width: 130px;
-                height: 130px;
+            #audioPlayer {
+                width: 100%;
+                margin: 10px 0;
             }
+        }
 
-            .song-title {
-                font-size: 1.1em;
-            }
+        .song-details h2 {
+            font-size: 1.3em;
+        }
+
+        .song-details p {
+            font-size: 1em;
+        }
+
+        .close-button {
+            width: 25px;
+            height: 25px;
+            font-size: 18px;
+        }
+
+        .song-cover {
+            width: 130px;
+            height: 130px;
+        }
+
+        .song-title {
+            font-size: 1.1em;
+        }
             .mi-gif {
       position: absolute; /* Esto permite ubicarlo donde quieras */
       top: 50px;           /* Distancia desde la parte superior */
