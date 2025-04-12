@@ -65,7 +65,9 @@ const lyrics = {
 
 
 ,
-    ,
+    "Apokaluz": [
+        
+    ],
     "fell in luv": [
         { time: 5.01, text: "Me enamoré, me enamoré" },
         { time: 8.19, text: "Pero está bien, porque estamos enamorados" },
