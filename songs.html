@@ -176,8 +176,45 @@
             transform: translateY(-20px);
             transition: all 0.3s ease;
             display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-height: 900vh;
+            overflow-y: auto;
+        }
+
+        .modal-main {
+            display: flex;
             flex-direction: row;
             gap: 20px;
+        }
+
+        .lyrics-toggle-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff8da1);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .lyrics-toggle-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(255, 105, 180, 0.4);
+        }
+
+        .lyrics-container {
+            display: none;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            margin-top: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            text-align: center;
+            border: 1px solid #ff69b4;
         }
 
         .modal.show .modal-content {
@@ -538,6 +575,16 @@
                 
                 audio.hasEventListener = true;
             }
+
+            // Configurar el botón de mostrar/ocultar letra
+            const lyricsContainer = document.querySelector('.lyrics-container');
+            const lyricsToggleBtn = document.querySelector('.lyrics-toggle-btn');
+            
+            lyricsToggleBtn.onclick = () => {
+                const isVisible = lyricsContainer.style.display === 'block';
+                lyricsContainer.style.display = isVisible ? 'none' : 'block';
+                lyricsToggleBtn.textContent = isVisible ? 'Mostrar Letra' : 'Ocultar Letra';
+            };
         }
     </script>
     <p>Cada canción es un pedacito de mi corazón para ti</p>
