@@ -41,6 +41,71 @@
             text-align: center;
         }
 
+        .contador-container {
+            background: linear-gradient(135deg, #fff5f7, #ffe4e8);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 10px 20px rgba(255, 105, 180, 0.2);
+        }
+
+        .contador-titulo {
+            color: #ff1493;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
+        }
+
+        .contador-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 10px;
+        }
+
+        .contador-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .contador-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contador-numero {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ff69b4;
+            margin-bottom: 5px;
+        }
+
+        .contador-label {
+            font-size: 14px;
+            color: #ff8da1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 600px) {
+            .contador-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .contador-numero {
+                font-size: 28px;
+            }
+
+            .contador-label {
+                font-size: 12px;
+            }
+        }
+
         .copyright {
             text-align: center;
             padding: 20px;
@@ -932,8 +997,60 @@
             transform: translateY(0);
         }
     </style>
+    <script>
+        // Fecha del próximo encuentro (ajusta esta fecha según corresponda)
+        const fechaEncuentro = new Date('2025-04-17T06:40:00');
+
+        function actualizarContador() {
+            const ahora = new Date();
+            const diferencia = fechaEncuentro - ahora;
+
+            if (diferencia > 0) {
+                const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+                document.getElementById('contador-dias').textContent = dias;
+                document.getElementById('contador-horas').textContent = horas;
+                document.getElementById('contador-minutos').textContent = minutos;
+                document.getElementById('contador-segundos').textContent = segundos;
+            }
+        }
+
+        // Actualizar el contador cada segundo
+        setInterval(actualizarContador, 1000);
+        // Actualizar inmediatamente al cargar la página
+        actualizarContador();
+    </script>
 </head>
 <body>
+    <div class="banner">
+        <h2>Recuerdos de Amor para Karime 💖</h2>
+    </div>
+
+    <div class="contador-container">
+        <div class="contador-titulo">Tiempo para vernos mi amor ❤️</div>
+        <div class="contador-grid">
+            <div class="contador-item">
+                <div class="contador-numero" id="contador-dias">0</div>
+                <div class="contador-label">Días</div>
+            </div>
+            <div class="contador-item">
+                <div class="contador-numero" id="contador-horas">0</div>
+                <div class="contador-label">Horas</div>
+            </div>
+            <div class="contador-item">
+                <div class="contador-numero" id="contador-minutos">0</div>
+                <div class="contador-label">Minutos</div>
+            </div>
+            <div class="contador-item">
+                <div class="contador-numero" id="contador-segundos">0</div>
+                <div class="contador-label">Segundos</div>
+            </div>
+        </div>
+    </div>
+
     <div class="main-container">
         <div class="clock-container">
             <div id="kitty-icon"></div>
