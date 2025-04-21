@@ -995,7 +995,55 @@
 
         .add-note-form button:active {
             transform: translateY(0);
+            
         }
+        .carousel-container {
+  position: relative;
+  width: 180%;
+  max-width: 200px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carousel-slide {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide img {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.3);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(0,0,0,0.6);
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
     </style>
     <script>
         // Fecha del próximo encuentro (ajusta esta fecha según corresponda)
@@ -1029,11 +1077,34 @@
         <h2>NINILOVER APP</h2>
     </div>
 
+
+    
     <div class="clock-container" style="margin: 20px auto;">
         <div id="kitty-icon"></div>
         <div id="clock" style="font-size: 45px; color: #ff1493; font-weight: bold; text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);"></div>
     </div>
-
+    <section id="galeria-reciente" style="padding: 2rem;">
+        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Recuerdos de la Ultima vez contigo</h2>
+      
+        <div class="carousel-container">
+          <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
+          
+          <div class="carousel-slide">
+            <img src="https://i.ibb.co/ynn63G7M/IMG-20250418-WA0004.jpg" alt="Foto con Nini">
+            <img src="https://i.ibb.co/nM15F8VD/AGC-20250419-190406693.jpg" alt="Foto con Nini">
+            <img src="https://i.ibb.co/mrYrRVhT/IMG-20250420-WA0025.jpg" alt="Foto con Nini">
+            <img src="https://i.ibb.co/fdfw20KB/IMG-20250420-WA0031.jpg" alt="Foto con Nini">
+            <img src="https://i.ibb.co/dwGfG4DV/IMG-20250420-WA0030.jpg" alt="Foto con Nini">
+            <img src="https://i.ibb.co/BKBTWHt8/IMG-20250420-WA0029-1.jpg" alt="Foto con Nini">
+            <img src="https://i.ibb.co/nsYZBLb7/IMG-20250420-WA0028.jpg" alt="Foto con Nini">
+            <img src="https://i.ibb.co/gFFKP5Dr/IMG-20250420-WA0027.jpg" alt="Foto con Nini">
+            
+          </div>
+      
+          <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+        </div>
+      </section>
+      
     <div class="contador-container">
         <div class="contador-titulo">Hasta que estemos juntos otra vez... ❤️</div>
         <div class="contador-grid">
@@ -1127,7 +1198,7 @@
 
     <script>
         // Fecha de inicio de la relación
-        const startDate = new Date('2024-10-20T00:00:00');
+        const startDate = new Date('2024-09-20T00:00:00');
 
         function updateTimer() {
             const now = new Date();
@@ -1467,7 +1538,17 @@
         loadSpecialNotes();
         renderCalendar();
     </script>
-
+<script>
+    let currentSlide = 0;
+  
+    function moveSlide(direction) {
+      const slide = document.querySelector('.carousel-slide');
+      const totalSlides = slide.children.length;
+      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+      slide.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+  </script>
+  
  <script>
         function updateClock() {
             const now = new Date();
