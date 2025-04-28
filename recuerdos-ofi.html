@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestros Recuerdos 🌟</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+        h1 {
+            color: #FF6F61;
+        }
+        .memory-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .memory {
+            width: 200px;
+            margin: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .memory:hover {
+            transform: scale(1.05);
+        }
+        .memory img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .memory-content {
+            padding: 10px;
+            text-align: left;
+        }
+        .memory-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        .memory-date {
+            font-size: 12px;
+            color: #888;
+        }
+        .memory-description {
+            font-size: 14px;
+            color: #555;
+        }
+        input[type="file"] {
+            padding: 10px;
+            margin: 10px;
+            background-color: #FF6F61;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #FF6F61;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1> Nuestros Momentos Especiales </h1>
+    <div class="memory-container" id="memory-container"></div>
+
+    <input type="file" id="file-input" />
+    <button id="upload-btn">Subir Foto</button>
+
+    <!-- Firebase SDK 8 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+
+apiKey: "AIzaSyCYOaYnUxqjWzqwWj9edvkaqayCXs2BEsk",
+
+authDomain: "ninivibes-app.firebaseapp.com",
+
+databaseURL: "https://ninivibes-app-default-rtdb.firebaseio.com",
+
+projectId: "ninivibes-app",
+
+storageBucket: "ninivibes-app.firebasestorage.app",
+
+messagingSenderId: "1007612365941",
+
+appId: "1:1007612365941:web:55183926e45ed99a7e7c3c",
+
+measurementId: "G-E1XPCGDGMB"
+
+};
+
+        // Inicializa Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage();
+        const database = firebase.database();
+
+        // Referencia a la base de datos de Firebase
+        const memoryRef = database.ref('memories');
+
+        // Subir imagen a Firebase Storage
+        document.getElementById('upload-btn').addEventListener('click', function() {
+            const file = document.getElementById('file-input').files[0];
+            if (!file) {
+                alert("Por favor, selecciona una foto");
+                return;
+            }
+
+            const storageRef = storage.ref('images/' + file.name);
+            const uploadTask = storageRef.put(file);
+
+            uploadTask.on('state_changed', function(snapshot) {
+                // Opcional: agregar un progreso aquí si lo deseas
+            }, function(error) {
+                console.log('Error al subir la imagen:', error);
+            }, function() {
+                // Una vez que la imagen se haya subido, obtener la URL
+                uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                    const newMemory = {
+                        title: "Nueva Foto",
+                        date: new Date().toLocaleDateString(),
+                        description: "Descripción de la foto",
+                        imageUrl: downloadURL
+                    };
+
+                    // Guardar información de la foto en la base de datos
+                    memoryRef.push(newMemory);
+
+                    alert('Foto subida exitosamente');
+                });
+            });
+        });
+
+        // Cargar fotos desde Firebase Realtime Database en tiempo real
+        memoryRef.on('child_added', function(snapshot) {
+            const memory = snapshot.val();
+            const memoryContainer = document.getElementById('memory-container');
+
+            const memoryElement = document.createElement('div');
+            memoryElement.classList.add('memory');
+            memoryElement.innerHTML = `
+                <img src="${memory.imageUrl}" alt="Recuerdo especial" class="memory-image">
+                <div class="memory-content">
+                    <h3 class="memory-title">${memory.title}</h3>
+                    <div class="memory-date">${memory.date}</div>
+                    <p class="memory-description">${memory.description}</p>
+                </div>
+            `;
+
+            memoryContainer.appendChild(memoryElement);
+
+            memoryElement.addEventListener('click', () => {
+                memoryElement.classList.toggle('reveal');
+            });
+        });
+    </script>
+</body>
+</html>
