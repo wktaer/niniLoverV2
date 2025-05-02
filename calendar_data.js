@@ -3,38 +3,40 @@ const specialNotes = {
     // Ejemplo de notas para diferentes años
     '2025': {
         // Abril 2025
-        '4': {
-            1: { phrase: "Eres mi lugar favorito en todo el mundo, mi princesita hermosa :3", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            2: { phrase: "No sé qué hice bien en la vida pa' merecerte, mi amorcito bello uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            3: { phrase: "Me encantas, mi bomboncita... en todas tus versiones >///<", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            4: { phrase: "A veces pienso en ti y me sale una sonrisita tonta, mi chiquita linda n.n", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            5: { phrase: "Diosito me premió mandándome a mi cielito más bello >w<", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            6: { phrase: "Mi plan siempre va a ser hacerte feliz, hasta viejitos, mi amorcito ñ.ñ", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            7: { phrase: "Eres más rica que dormir tapadito en invierno, mi cosita tierna :P", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            8: { phrase: "Tus besitos son mi vicio, mi bomboncito... los necesito diario OwO", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            9: { phrase: "No hay nadie como tú, mi chiquitita preciosa :’) eres mi persona favorita", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            10: { phrase: "Contigo el día vuela... pero sin ti se me hace eterno, mi amorcito uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            11: { phrase: "No es por presumir, pero qué bombón de polola tengo :Q~", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            12: { phrase: "Cada mensajito tuyo me deja con cara de tonto enamorado >//<", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            13: { phrase: "Te pienso más de lo que debería, pero me encanta, mi cosita chula uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            14: { phrase: "Si pudiera pedir un deseo, sería tenerte aquí abrazadita :3", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            15: { phrase: "Eres mi debilidad, mi princesita linda... y mi mejor regalo n.n", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            16: { phrase: "Hoy amanecí con más ganas de ti que de desayuno, mi cuchurrumi >:3", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            17: { phrase: "Nunca me voy a cansar de ti, mi ternurita hermosa uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            18: { phrase: "Oye mi niña linda... te amo más de lo que crees, mi chiquitita preciosa T///T", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            19: { phrase: "Te quiero pa' mí, pa' siempre, pa' todo... mi amorcito nwn", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            20: { phrase: "Tú me haces feliz de una forma que nadie más puede, mi cielito :’3", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            21: { phrase: "Si ser cursi es delito, que me encierren por ti, mi amor uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            22: { phrase: "Hoy solo quiero abrazarte hasta quedarme dormido contigo :3", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            23: { phrase: "No hay otra como tú... ni quiero buscar, mi ternurita n.n", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            24: { phrase: "Estoy total y completamente enviciado a ti, mi bomboncita OwO", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            25: { phrase: "Qué suerte la mía tener a una novia tan bacán y hermosa como tú, mi amorsh >w<", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            26: { phrase: "Si tú eres un sueño... que no me despierten nunca, mi princesa linda :3", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            27: { phrase: "Estoy tan enamorado de ti que ya me acostumbré a extrañarte uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            28: { phrase: "Mis ganas de ti no se van nunca, mi cuchurrumita hermosa >:3", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            29: { phrase: "Eres mi razón pa' ser mejor cada día, mi amorsh uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
-            30: { phrase: "Gracias por existir, mi amorcito lindo... te amo infinito n///n", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" }
-        }
+        '5': {
+            1:  { phrase: "No hay mejor lugar que tus brazos, mi chiquita linda >///<", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            2:  { phrase: "Tu voz es mi sonido favorito, mi princesita hermosa n.n", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            3:  { phrase: "Eres lo más bonito que me ha pasado en la vida, mi niña preciosa uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            4:  { phrase: "A tu lado todo se siente más suavecito, más lindo, más tú ♡", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            5:  { phrase: "Cada día contigo es un regalo que quiero abrir despacito :3", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            6:  { phrase: "Eres mi persona favorita en todo el universo, mi bomboncita linda uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            7:  { phrase: "No sé cómo lo haces pero cada día me gustas más, mi ternurita >///<", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            8:  { phrase: "Si tú estás bien, yo estoy bien... así de simple, mi amorcito n.n", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            9:  { phrase: "Eres tan perfecta pa’ mí que a veces pienso que te soñé uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            10: { phrase: "Tu sonrisa es la culpable de mi felicidad diaria, mi chiquita hermosa ♡", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            11: { phrase: "Tú y yo... así, juntitos, es como debería ser siempre >w<", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            12: { phrase: "Me haces sentir especial con solo mirarme, mi princesita linda uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            13: { phrase: "Estás tan bonita que hasta cuando te enojas me gustas >///<", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            14: { phrase: "Me derrito cada vez que me dices 'te amo', mi cosita rica ♡", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            15: { phrase: "Quiero ser el motivo de tus sonrisas todos los días nwn", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            16: { phrase: "Eres mi lugar seguro, mi abracito favorito, mi todo uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            17: { phrase: "Tenerte es lo más bonito que me ha pasado... y no pienso soltarte :3", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            18: { phrase: "Si tú me dices ‘ven’, dejo todo por abrazarte >///<", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            19: { phrase: "Tu amor me hace sentir capaz de todo, mi chiquita hermosa n.n", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            20: { phrase: "Eres el 'ojalá nunca te vayas' más fuerte que he sentido uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            21: { phrase: "Mi lugar favorito siempre va a ser donde estés tú >w<", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            22: { phrase: "Contigo no hay días malos... solo días con ganas de abrazarte más ♡", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            23: { phrase: "Me haces suspirar con solo existir, mi princesita preciosa n.n", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            24: { phrase: "A veces te pienso tanto que parece que estás aquí abrazadita >///<", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            25: { phrase: "Quisiera poder pausar el tiempo solo pa’ quedarme contigo un rato más uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            26: { phrase: "Eres lo primero que quiero ver al despertar y lo último al dormir ♡", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            27: { phrase: "Desde que llegaste, todo es más bonito... porque estás tú :3", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            28: { phrase: "Mi amor por ti no tiene pausa ni punto final, mi chiquita uwu", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            29: { phrase: "Tu existencia le dio sentido a todo en mí ♡ eres mi todo", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" },
+            30: { phrase: "Si el amor tuviera nombre, llevaría el tuyo, mi ternurita hermosa >///<", img: "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif" }
+          }
+          
+
         
         
     },
