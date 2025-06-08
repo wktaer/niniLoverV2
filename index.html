@@ -3,1553 +3,2097 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuerdos de Amor para Karime 💖</title>
-   
+    <title>Para Mi Amor, Karime 💖</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;500;600&family=Pacifico&display=swap" rel="stylesheet">
     <style>
-        /* Estilo general */
+        /* General Styles */
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fff0f5;
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fff0f5; /* Pale Pink */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M30,50 a20,20 0 0,1 40,0 a20,20 0 0,1 -40,0 z M50,30 a20,20 0 0,1 0,40 a20,20 0 0,1 0,-40 z" fill="%23ffb6c1" opacity="0.1"/></svg>');
+            background-size: 100px 100px;
             margin: 0;
             padding: 0;
             text-align: center;
             overflow-x: hidden;
-            padding-top: 80px;
+            padding-top: 100px; /* Space for fixed banner */
+            position: relative; /* For floating hearts */
+            min-height: 100vh; /* Ensure full page height */
         }
 
+        /* Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff69b4, #ff8da1); /* Matches banner gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Highest z-index to cover everything */
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .hello-kitty-spinner {
+            width: 120px;
+            height: 120px;
+            background-image: url('https://media.tenor.com/KCR6uHAlphkAAAAj/hello-kitty.gif'); /* Hello Kitty logo */
+            background-size: cover;
+            background-repeat: no-repeat;
+            animation: spin 1.5s linear infinite; /* Spinning animation */
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.7)); /* White glow effect */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Banner */
         .banner {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(135deg, #ff69b4, #ff8da1);
+            background: linear-gradient(135deg, #ff69b4, #ff8da1); /* Hot Pink to Light Red */
             color: white;
             padding: 15px 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(255, 105, 180, 0.3);
-            text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
+            animation: pulse-banner 2s infinite alternate;
         }
 
-        .banner h2 {
+        .banner h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 2.5em; /* Larger for impact */
             letter-spacing: 2px;
-            width: 100%;
-            text-align: center;
+            font-family: 'Pacifico', cursive;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
 
-        .contador-container {
-            background: linear-gradient(135deg, #fff5f7, #ffe4e8);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px auto;
-            max-width: 600px;
-            box-shadow: 0 10px 20px rgba(255, 105, 180, 0.2);
+        .banner i {
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+            color: #fff;
+            margin: 0 10px;
         }
 
-        .contador-titulo {
-            color: #ff1493;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
-        }
-
-        .contador-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            padding: 10px;
-        }
-
-        .contador-item {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .contador-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .contador-numero {
-            font-size: 36px;
-            font-weight: bold;
-            color: #ff69b4;
-            margin-bottom: 5px;
-        }
-
-        .contador-label {
-            font-size: 14px;
-            color: #ff8da1;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 600px) {
-            .contador-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-
-            .contador-numero {
-                font-size: 28px;
-            }
-
-            .contador-label {
-                font-size: 12px;
-            }
-        }
-
-        .copyright {
-            text-align: center;
-            padding: 20px;
-            color: #ff69b4;
-            font-size: 14px;
-            margin-top: 30px;
-            border-top: 2px solid rgba(255, 105, 180, 0.2);
-        }
-
+        /* Main Container */
         .main-container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .content-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-
-        .button-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin: 30px auto;
-            max-width: 900px;
-            padding: 0 20px;
-        }
-
-        @media (max-width: 600px) {
-            .button-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Estilo para el fondo animado de corazones */
-        .hearts-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            animation: moveHearts 10s linear infinite;
-        }
-
-        @keyframes moveHearts {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(100%);
-            }
-        }
-
-        .heart {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-color: #ff69b4;
-            clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 70%, 20% 100%, 0% 35%);
-            animation: floatHearts 3s infinite;
-            opacity: 0.8;
-        }
-
-        @keyframes floatHearts {
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 0.8;
-            }
-            50% {
-                transform: translateY(-10px) scale(1.1);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(10px) scale(1);
-                opacity: 0.8;
-            }
-        }
-
-        /* Estilo del menu */
-        .love-letter {
-            background: linear-gradient(135deg, #ffe4e1, #ffd1dc);
+            margin: 20px auto; /* Adjust margin for fixed banner */
             padding: 30px;
-            border: none;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
             border-radius: 25px;
-            margin: 30px auto;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.2);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(5px);
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.4);
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            animation: glow 3s infinite alternate;
         }
 
-        .love-letter::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 3px solid transparent;
-            border-radius: 25px;
-            background: linear-gradient(45deg, #ff69b4, #ff8da1) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: destination-out;
-            mask-composite: exclude;
-            animation: borderGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes borderGlow {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        .carousel {
-            display: flex;
-            overflow: hidden;
-            width: 80%;
-            margin: 20px auto;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .carousel img {
-            min-width: 100%;
-            transition: transform 0.5s ease-in-out;
-            object-fit: cover;
-        }
-
-        .calendar-container {
-            background: linear-gradient(135deg, #fff5f7, #fff);
-            padding: 25px;
+        /* Kawaii Clock */
+        .kawaii-clock-container {
+            background: linear-gradient(135deg, #ffe4e8, #ffd1dc); /* Lighter pink gradient */
             border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.15);
-            text-align: center;
-            margin: 40px auto;
-            max-width: 80%;
-            width: 500px;
-            border: 3px solid rgba(255, 105, 180, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .add-note-form {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(255, 192, 203, 0.1);
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
-        }
-
-        .add-note-form h3 {
-            color: #ff69b4;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-
-        .add-note-form input,
-        .add-note-form textarea {
-            width: calc(100% - 24px);
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 2px solid #ffd1dc;
-            border-radius: 8px;
-            transition: border-color 0.3s ease;
-        }
-
-        .add-note-form input:focus,
-        .add-note-form textarea:focus {
-            outline: none;
-            border-color: #ff69b4;
-        }
-
-        .add-note-form button {
-            background: linear-gradient(45deg, #ff69b4, #ff8da1);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: all 0.3s ease;
-        }
-
-        .add-note-form button:hover {
-            transform: translateY(-2px);
+            padding: 15px 25px;
             box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #ff69b4;
+            max-width: 450px;
+            margin: 20px auto;
+            transform: scale(1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; /* For the glow effect */
+            overflow: hidden;
+            cursor: pointer; /* Indicate interactivity */
+            animation: clock-aura 2s infinite alternate, sparkle-background 2s infinite linear;
+            background-size: 200% 200%;
         }
 
-        .special-date {
-            position: relative;
-            background: linear-gradient(135deg, #ffe4e1, #ffd1dc);
-            color: #ff69b4;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .special-date:hover {
-            transform: scale(1.1);
-            background: linear-gradient(135deg, #ffd1dc, #ff8da1);
-        }
-
-        .special-indicator {
-            position: absolute;
-            bottom: 2px;
-            right: 2px;
-            font-size: 0.8em;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        .calendar-container::before {
+        .kawaii-clock-container::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 182, 193, 0.2) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
+            background: radial-gradient(circle, rgba(255,255,255,0.7) 10%, transparent 70%);
+            transform: rotate(45deg);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
         }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .kawaii-clock-container:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.5);
+            animation: none; /* Stop pulsing on hover */
         }
 
-        .header {
+        .kawaii-clock-container:hover::before {
+            animation: clock-glow 1.5s forwards ease-in-out;
+            opacity: 1;
+        }
+
+        .kawaii-clock {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #ff1493; /* Deep Pink */
+            text-shadow: 1px 1px 3px rgba(255, 105, 180, 0.3);
+            margin: 0 15px;
+            position: relative; /* For text glow */
+            animation: text-glow 1.5s infinite alternate;
+        }
+
+        .kawaii-clock-kitty {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            animation: bounce 2s infinite alternate, rotate-kitty 10s infinite linear; /* Added rotation */
+        }
+
+        .kawaii-clock-decoration {
+            font-size: 1.5em;
+            margin: 0 8px;
+            animation: sparkle 1s infinite alternate; /* New sparkle on emoji */
+        }
+
+        /* Time Together Section */
+        .time-together-section {
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 228, 232, 0.85), rgba(255, 209, 220, 0.85));
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.25);
+            transition: all 0.4s ease;
+        }
+
+        .time-together-section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(255, 105, 180, 0.4);
+        }
+
+        .time-together-section h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff1493;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 3px rgba(255, 105, 180, 0.3);
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .counter-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            border-radius: 15px;
+            padding: 15px 10px;
+            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.15);
+            border: 1px solid #ffd1dc;
+            transition: transform 0.3s ease;
+            position: relative; /* For particle effect */
+            overflow: hidden;
+            cursor: pointer; /* To indicate hover effect */
+        }
+
+        .counter-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .counter-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ff1493;
+            line-height: 1;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .counter-label {
+            font-size: 1em;
+            color: #ff69b4;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Calendar Section */
+        .calendar-section {
+            position: relative;
+            margin: 40px auto;
+            max-width: 850px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 10px 35px rgba(255, 105, 180, 0.35);
+            border: 4px solid #ffd1dc;
+            overflow: hidden; /* For decorations */
+        }
+
+        .calendar-decoration {
+            position: absolute;
+            font-size: 3em;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        .calendar-decoration:nth-child(1) { top: -20px; left: 15px; animation-delay: 0s; color: #ff69b4; }
+        .calendar-decoration:nth-child(2) { top: -20px; right: 15px; animation-delay: 1.5s; color: #ff8da1; }
+        .calendar-decoration:nth-child(3) { bottom: -20px; left: 50px; animation-delay: 1s; color: #ff1493; }
+        .calendar-decoration:nth-child(4) { bottom: -20px; right: 50px; animation-delay: 2.5s; color: #ffb6c1; }
+
+        .calendar-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .header button {
-            background: linear-gradient(135deg, #ff69b4, #ff8da1);
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .header button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
-        }
-
-        #clock {
-            font-size: 45px;
-            color: #ff1493;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
-            margin: 15px 0;
-        }
-
-        .special-date {
-            background: linear-gradient(135deg, #ff69b4, #ff8da1);
-            color: white;
-            cursor: pointer;
-            transform: scale(1.1);
-            box-shadow: 0 2px 5px rgba(255, 105, 180, 0.3);
-        }
-
-        .special-note-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            max-width: 80%;
-            text-align: center;
-        }
-
-        .modal-content img {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .special-phrase {
-            font-size: 1.2em;
-            color: #ff1493;
-            margin: 15px 0;
-        }
-
-        .modal-content button {
-            background: linear-gradient(135deg, #ff69b4, #ff8da1);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            color: white;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: transform 0.3s ease;
-        }
-
-        .modal-content button:hover {
-            transform: scale(1.1);
-        }
-            letter-spacing: 3px;
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: pulseText 2s ease-in-out infinite;
-        }
-
-        @keyframes pulseText {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
-        }
-
-        .days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        .dates {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            margin-top: 10px;
-        }
-
-        .date {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            min-height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-bottom: 25px;
             position: relative;
-            font-size: 14px;
-            border: 1px solid #ffd1dc;
-            padding: 2px;
-        }
-
-        @media (max-width: 768px) {
-            .date {
-                min-height: 30px;
-                font-size: 12px;
-                padding: 1px;
-            }
-        }
-
-        .date.empty {
-            background-color: transparent;
-            border: none;
-            cursor: default;
-        }
-
-        .date:not(.empty):hover {
-            background-color: #ffe4e8;
-            transform: scale(1.1);
-            box-shadow: 0 2px 5px rgba(255, 105, 180, 0.2);
-        }
-
-        .date.special-date {
-            background: linear-gradient(135deg, #ffe4e1, #ffd1dc);
-            color: #ff69b4;
-            font-weight: bold;
-        }
-
-        .date.today {
-            background-color: #ff69b4;
-            color: white;
-            font-weight: bold;
-            border: 2px solid #ff1493;
-        }
-
-        .special-indicator {
-            position: absolute;
-            bottom: 2px;
-            right: 2px;
-            font-size: 12px;
-        }
-
-        .date.special-date::after {
-            content: '❤';
-            position: absolute;
-            bottom: 2px;
-            right: 2px;
-            font-size: 8px;
-            color: #ff69b4;
-        }
-
-        .today {
-            background-color: #ff69b4;
-            color: white;
-            font-weight: bold;
-        }
-
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        /* Animaciones kawaii */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes sparkle {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
-
-        /* Elementos kawaii */
-        .kawaii-element {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            pointer-events: none;
-            z-index: 1;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        .kawaii-bow {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 30c-15 0-25 10-25 20s10 20 25 20 25-10 25-20-10-20-25-20z" fill="%23ff69b4"/><path d="M50 35c-8 0-15 6-15 15s7 15 15 15 15-6 15-15-7-15-15-15z" fill="white"/></svg>');
-        }
-
-        .kawaii-star {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 5l10 30h30l-25 20 10 30-25-20-25 20 10-30-25-20h30z" fill="%23ffb6c1"/></svg>');
-            animation: sparkle 3s ease-in-out infinite;
-        }
-
-        /* Efectos kawaii adicionales */
-        .sparkle {
-            position: absolute;
-            pointer-events: none;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23fff" opacity="0.8"/></svg>');
-            animation: twinkle 1.5s ease-in-out infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1); opacity: 0.8; }
-        }
-
-        /* Mejoras visuales */
-        .love-letter, .calendar-container, .overlay-content {
-            background: linear-gradient(135deg, #fff 0%, #fff5f7 100%);
-            border: 3px solid #ff69b4;
-            transition: all 0.3s ease;
-        }
-
-        .love-letter:hover, .calendar-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.2);
-        }
-
-        /* Decoración Hello Kitty */
-        .hello-kitty-corner {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23fff"/><circle cx="35" cy="45" r="5" fill="%23000"/><circle cx="65" cy="45" r="5" fill="%23000"/><circle cx="50" cy="55" r="3" fill="%23ffb6c1"/><path d="M30 35q20-10 40 0" stroke="%23ffb6c1" fill="none" stroke-width="3"/></svg>');
-            background-size: contain;
-            background-repeat: no-repeat;
             z-index: 2;
         }
 
-        .overlay-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            position: relative;
-            z-index: 1010;
-            width: 80%;
-            max-width: 300px;
+        .calendar-header h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2em;
+            color: #ff1493;
+            margin: 0;
+            text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.3);
         }
 
-        .overlay-content img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .overlay-content .phrase {
-            margin-top: 10px;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .overlay-content::before,
-        .overlay-content::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ff69b4"/><circle cx="35" cy="40" r="5" fill="white"/><circle cx="65" cy="40" r="5" fill="white"/><path d="M40 60q10 10 20 0" stroke="white" fill="none" stroke-width="3"/></svg>');
-            background-size: contain;
-            z-index: -1;
-        }
-
-        .overlay-content::before {
-            top: -25px;
-            left: -25px;
-            transform: rotate(-30deg);
-        }
-
-        .overlay-content::after {
-            bottom: -25px;
-            right: -25px;
-            transform: rotate(30deg);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
+        .calendar-nav-button {
             background: none;
             border: none;
-            font-size: 20px;
+            font-size: 1.8em;
+            color: #ff69b4;
             cursor: pointer;
-        }
-
-        /* Desenfoque del menú */
-        .blurred {
-            filter: blur(5px);
-        }
-
-        .button-recuerdos {
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 5px;
-            padding: 15px 25px;
-            background: linear-gradient(45deg, #ff69b4, #ff8da1);
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 25px;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .calendar-nav-button:hover {
+            background-color: #ffe4e8;
+            transform: scale(1.15);
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+        }
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-weight: bold;
+            color: #ff69b4;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed #ffd1dc;
+            padding-bottom: 10px;
+        }
+
+        .dates-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+
+        .date-cell {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
+            font-weight: 500;
+            color: #333;
+            font-size: 1.1em;
+            user-select: none; /* Prevent text selection */
+            background-color: rgba(255, 240, 245, 0.7); /* Light background for default cells */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        .button-recuerdos::before {
-            content: '';
+        .date-cell:not(.inactive):not(.future-date):hover {
+            background-color: #ffe4e8;
+            transform: scale(1.08);
+            box-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
+        }
+
+        .date-cell.today {
+            background-color: #ff69b4;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.5), 0 2px 10px rgba(255, 105, 180, 0.7);
+            animation: pulse-border 2s infinite;
+        }
+
+        .date-cell.special-date {
+            background: linear-gradient(135deg, #ffd1dc, #ffc0cb); /* Soft gradient for special dates */
+            color: #ff1493;
+            font-weight: bold;
+            border: 2px solid #ff69b4;
+            box-shadow: 0 0 0 3px #ffb6c1, 0 4px 10px rgba(255, 105, 180, 0.3);
+            animation: special-date-pulse 1.5s infinite alternate; /* New animation for special dates */
+        }
+
+        .date-cell .special-indicator {
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
+            top: -5px;
+            right: -5px;
+            font-size: 0.7em;
+            animation: heartbeat 1.5s infinite;
+            color: #ff1493;
+            text-shadow: 0 0 5px rgba(255,255,255,0.7);
         }
 
-        .button-recuerdos:hover {
-            background-image: linear-gradient(45deg, #ff1493, #ff69b4);
-            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.5);
-            transform: translateY(-5px) scale(1.05);
+        .date-cell.inactive {
+            background-color: #f8f8f8;
+            color: #ccc;
+            cursor: default;
+            opacity: 0.7;
+            box-shadow: none;
         }
 
-        .button-recuerdos:hover::before {
-            left: 100%;
+        .date-cell.future-date {
+            background-color: #f0f0f0; /* Lighter background for future dates */
+            color: #aaa;
+            cursor: not-allowed;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
         }
 
-        .button-recuerdos:active {
-            transform: translateY(-2px) scale(0.98);
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
-        }
-
-        .button-recuerdos::after {
-            content: '';
+        /* Styles for the lock icon on future dates */
+        .date-cell.future-date::after {
+            content: '🔒'; /* Unicode lock icon */
             position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+            font-size: 0.8em; /* Slightly larger lock */
+            bottom: 2px;
+            right: 2px;
+            opacity: 0.8;
+            transform: scale(0.9);
+            animation: float 2s ease-in-out infinite alternate; /* Make lock float subtly */
+        }
+
+
+        /* Romantic Quote */
+        #daily-quote {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8em;
+            color: #ff1493;
+            line-height: 1.6;
+            padding: 25px;
+            margin: 40px auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.2);
+            position: relative;
+            border-left: 8px solid #ff69b4;
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out;
+            min-height: 120px; /* Ensure enough height for quotes */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #daily-quote::before, #daily-quote::after {
+            content: '“';
+            font-size: 4em;
+            position: absolute;
+            color: rgba(255, 105, 180, 0.25);
+            font-family: 'Dancing Script', cursive;
+            z-index: 0;
+        }
+
+        #daily-quote::after {
+            content: '”';
+            bottom: -30px;
+            right: 20px;
+        }
+
+        #daily-quote span {
+            position: relative;
+            z-index: 1;
+            padding: 0 10px; /* Add padding to prevent text from overlapping quotes */
+        }
+
+        /* Love Meter */
+        .love-meter-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 240, 245, 0.9), rgba(255, 228, 232, 0.9));
             border-radius: 25px;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+            border: 2px dashed #ffb6c1;
+        }
+
+        .love-meter-section h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff1493;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(255, 105, 180, 0.3);
+        }
+
+        .love-meter-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .love-meter-bar-wrapper {
+            width: 100%;
+            background-color: #ffd1dc;
+            border-radius: 20px;
+            height: 30px;
+            overflow: hidden;
+            border: 2px solid #ff69b4;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .love-meter-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff8da1, #ff1493);
+            border-radius: 20px;
+            transition: width 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            box-sizing: border-box;
+            animation: fill-pulse 1s infinite alternate; /* New animation for meter fill */
+        }
+
+        .love-meter-bar-label {
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .love-meter-fill-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) translateX(calc(-100% - 5px)); /* Position near end of bar */
+            font-size: 1.2em;
+            color: white;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .button-recuerdos:hover::after {
-            opacity: 0.4;
+        .love-meter-bar.filled .love-meter-fill-icon {
+            opacity: 1;
         }
 
-        .button-recuerdos:hover::before {
-            left: 100%;
+        .love-meter-buttons {
+            display: flex;
+            gap: 15px;
         }
 
-        @media (max-width: 600px) {
-            .love-letter {
-                width: 80%;
-                max-width: none;
-                padding: 15px;
-            }
-
-            .carousel {
-                width: 90%;
-            }
-
-            .calendar-container {
-                padding: 10px;
-            }
-
-            .header {
-                font-size: 16px;
-            }
-
-            .days {
-                font-size: 10px;
-            }
-
-            .dates {
-                font-size: 12px;
-            }
-
-            /* Animaciones kawaii */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes sparkle {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
-
-        /* Elementos kawaii */
-        .kawaii-element {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            pointer-events: none;
-            z-index: 1;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        .kawaii-bow {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 30c-15 0-25 10-25 20s10 20 25 20 25-10 25-20-10-20-25-20z" fill="%23ff69b4"/><path d="M50 35c-8 0-15 6-15 15s7 15 15 15 15-6 15-15-7-15-15-15z" fill="white"/></svg>');
-        }
-
-        .kawaii-star {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 5l10 30h30l-25 20 10 30-25-20-25 20 10-30-25-20h30z" fill="%23ffb6c1"/></svg>');
-            animation: sparkle 3s ease-in-out infinite;
-        }
-
-        /* Efectos kawaii adicionales */
-        .sparkle {
-            position: absolute;
-            pointer-events: none;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23fff" opacity="0.8"/></svg>');
-            animation: twinkle 1.5s ease-in-out infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1); opacity: 0.8; }
-        }
-
-        /* Mejoras visuales */
-        .love-letter, .calendar-container, .overlay-content {
-            background: linear-gradient(135deg, #fff 0%, #fff5f7 100%);
-            border: 3px solid #ff69b4;
-            transition: all 0.3s ease;
-        }
-
-        .love-letter:hover, .calendar-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.2);
-        }
-
-        /* Decoración Hello Kitty */
-        .hello-kitty-corner {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23fff"/><circle cx="35" cy="45" r="5" fill="%23000"/><circle cx="65" cy="45" r="5" fill="%23000"/><circle cx="50" cy="55" r="3" fill="%23ffb6c1"/><path d="M30 35q20-10 40 0" stroke="%23ffb6c1" fill="none" stroke-width="3"/></svg>');
-            background-size: contain;
-            background-repeat: no-repeat;
-            z-index: 2;
-        }
-
-        .overlay-content {
-                width: 90%;
-                max-width: 200px;
-            }
-
-            .overlay-content::before,
-        .overlay-content::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ff69b4"/><circle cx="35" cy="40" r="5" fill="white"/><circle cx="65" cy="40" r="5" fill="white"/><path d="M40 60q10 10 20 0" stroke="white" fill="none" stroke-width="3"/></svg>');
-            background-size: contain;
-            z-index: -1;
-        }
-
-        .overlay-content::before {
-            top: -25px;
-            left: -25px;
-            transform: rotate(-30deg);
-        }
-
-        .overlay-content::after {
-            bottom: -25px;
-            right: -25px;
-            transform: rotate(30deg);
-        }
-
-        .close-btn {
-                font-size: 18px;
-            }
-        }
-
-        @media (max-width: 200px) {
-            .carousel img {
-                height: 100px;
-                object-fit: cover;
-            }
-
-            .overlay-content .phrase {
-                font-size: 14px;
-            }
-        }
-
-        .clock-container {
-            background: linear-gradient(135deg, #FFD1DC, #FFB6C1);
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.25);
-            margin: 30px auto;
-            max-width: 400px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(5px);
-            position: relative;
-            z-index: 2;
-        }
-
-        .clock-container::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, #ff69b4, transparent);
-            border-radius: 25px;
-            z-index: -1;
-            filter: blur(15px);
-            opacity: 0.5;
-        }
-
-        #kitty-icon {
-            width: 100px;
-            height: 100px;
-            background-image: url('https://i.ibb.co/hqZ0z0N/1305059137-removebg-preview.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            margin: 0 auto 20px auto;
-            display: block;
-        }
-
-        #clock {
-            font-size: 40px;
-            color: #FF69B4;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
-        #daily-quote {
-            color: #ff1493;
-            font-size: 24px;
-            font-weight: 600;
-            margin: 30px auto;
-            max-width: 80%;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
-            position: relative;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .hearts-background .image {
-            position: absolute;
-            background-size: contain;
-            background-repeat: no-repeat;
-            width: 50px;
-            height: 50px;
-            animation: moveHearts 10s linear infinite;
-            z-index: -1;
-        }
-        .add-note-form {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(255, 192, 203, 0.1);
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.1);
-        }
-
-        .add-note-form h3 {
-            color: #ff69b4;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-
-        .add-note-form input,
-        .add-note-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 2px solid #ffd1dc;
-            border-radius: 8px;
-            transition: border-color 0.3s ease;
-        }
-
-        .add-note-form input:focus,
-        .add-note-form textarea:focus {
-            outline: none;
-            border-color: #ff69b4;
-        }
-
-        .add-note-form button {
+        .meter-button {
             background: linear-gradient(135deg, #ff69b4, #ff8da1);
             color: white;
             border: none;
             padding: 12px 25px;
-            border-radius: 8px;
+            border-radius: 30px;
+            font-size: 1.1em;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+        }
+
+        .meter-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.5);
+        }
+
+        /* Button Grid */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .love-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffe4e8, #ffd1dc);
+            color: #ff1493;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.2em;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.25);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+            height: 140px; /* Consistent height */
+        }
+
+        .love-button::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(45deg, #ff69b4, #ff8da1, #ff69b4, #ff8da1);
+            background-size: 400% 400%;
+            z-index: -1;
+            filter: blur(15px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: gradient 15s ease infinite;
+        }
+
+        .love-button:hover::before {
+            opacity: 0.8;
+        }
+
+        .love-button:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
+            border-color: #ff69b4;
+            color: white; /* Text color change on hover */
+        }
+
+        .love-button:hover i {
+            color: white; /* Icon color change on hover */
+        }
+
+        .love-button i {
+            font-size: 2.5em;
+            margin-bottom: 12px;
+            color: #ff1493; /* Default icon color */
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .love-button:hover i {
+            transform: scale(1.15);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            padding: 20px;
+            color: #ff69b4;
+            font-size: 1em;
+            position: relative;
+        }
+
+        .footer p {
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #ff69b4, transparent);
+        }
+
+        /* Animations */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.08); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes pulse-banner {
+            0% { box-shadow: 0 2px 10px rgba(255, 105, 180, 0.3); }
+            100% { box-shadow: 0 2px 25px rgba(255, 105, 180, 0.7); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 5px 25px rgba(255, 105, 180, 0.4); }
+            100% { box-shadow: 0 5px 40px rgba(255, 105, 180, 0.8); }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(255, 105, 180, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes appear {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes clock-glow {
+            0% { transform: rotate(45deg) scale(0.8); opacity: 0; }
+            50% { transform: rotate(45deg) scale(1); opacity: 1; }
+            100% { transform: rotate(45deg) scale(0.8); opacity: 0; }
+        }
+
+        /* Clock Specific Animations */
+        @keyframes clock-aura {
+            0% { box-shadow: 0 0 10px rgba(255, 105, 180, 0.5), 0 0 20px rgba(255, 105, 180, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(255, 105, 180, 0.8), 0 0 30px rgba(255, 105, 180, 0.5); }
+            100% { box-shadow: 0 0 10px rgba(255, 105, 180, 0.5), 0 0 20px rgba(255, 105, 180, 0.3); }
+        }
+
+        @keyframes sparkle-background {
+            from { background-position: 0% 0%; }
+            to { background-position: 200% 200%; }
+        }
+
+        @keyframes text-glow {
+            0% { text-shadow: 0 0 5px #ff1493, 0 0 10px #ff69b4; }
+            50% { text-shadow: 0 0 10px #ff1493, 0 0 20px #ff69b4, 0 0 30px #ffb6c1; }
+            100% { text-shadow: 0 0 5px #ff1493, 0 0 10px #ff69b4; }
+        }
+
+        @keyframes rotate-kitty {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        @keyframes fill-pulse {
+            0% { transform: scaleX(1); }
+            50% { transform: scaleX(1.01); }
+            100% { transform: scaleX(1); }
+        }
+
+        /* New: Special Date Pulse for Calendar */
+        @keyframes special-date-pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 3px #ffb6c1, 0 4px 10px rgba(255, 105, 180, 0.3); }
+            50% { transform: scale(1.03); box-shadow: 0 0 0 5px #ff8da1, 0 8px 15px rgba(255, 105, 180, 0.5); }
+            100% { transform: scale(1); box-shadow: 0 0 0 3px #ffb6c1, 0 4px 10px rgba(255, 105, 180, 0.3); }
+        }
+
+        /* Floating Hearts Background */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            font-weight: bold;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
         }
 
-        .add-note-form button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        .heart {
+            position: absolute;
+            background-color: #ff69b4;
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            transform: rotate(-45deg);
+            opacity: 0.3;
+            animation: float-up 15s linear forwards infinite;
+            border-radius: 5px; /* Slight roundness */
         }
 
-        .add-note-form button:active {
-            transform: translateY(0);
-            
+        .heart:before, .heart:after {
+            content: "";
+            background-color: #ff69b4;
+            border-radius: 50%;
+            height: 20px;
+            position: absolute;
+            width: 20px;
         }
-        .carousel-container {
-  position: relative;
-  width: 100%;
-  max-width: 300%;
-  margin: auto;
-  overflow: hidden;
-  border-radius: 12px;
-}
 
-.carousel-slide {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
 
-.carousel-slide img {
-  width: 100%;
-  flex-shrink: 0;
-  object-fit: cover;
-  border-radius: 12px;
-}
+        .heart:after {
+            left: 10px;
+            top: 0;
+        }
 
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0,0,0,0.3);
-  border: none;
-  color: white;
-  font-size: 2rem;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  z-index: 10;
-  border-radius: 50%;
-}
-
-.carousel-btn:hover {
-  background-color: rgba(0,0,0,0.6);
-}
-
-.carousel-btn.prev {
-  left: 10px;
-}
-
-.carousel-btn.next {
-  right: 10px;
-}
-
-    </style>
-    <script>
-        // Fecha del próximo encuentro (ajusta esta fecha según corresponda)
-        const fechaEncuentro = new Date('2025-04-17T06:40:00');
-
-        function actualizarContador() {
-            const ahora = new Date();
-            const diferencia = fechaEncuentro - ahora;
-
-            if (diferencia > 0) {
-                const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-                const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-                const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-
-                document.getElementById('contador-dias').textContent = dias;
-                document.getElementById('contador-horas').textContent = horas;
-                document.getElementById('contador-minutos').textContent = minutos;
-                document.getElementById('contador-segundos').textContent = segundos;
+        @keyframes float-up {
+            0% {
+                transform: rotate(-45deg) translateY(100vh) scale(0.3);
+                opacity: 0.3;
+            }
+            100% {
+                transform: rotate(-45deg) translateY(-100vh) scale(0.6);
+                opacity: 0;
             }
         }
 
-        // Actualizar el contador cada segundo
-        setInterval(actualizarContador, 1000);
-        // Actualizar inmediatamente al cargar la página
-        actualizarContador();
-    </script>
+        /* Modal Styles (Special Note & Tramposita) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1002;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #fff0f5, #ffe4e8);
+            border-radius: 25px;
+            padding: 35px;
+            max-width: 550px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+            border: 4px solid #ff69b4;
+            animation: appear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2em;
+            color: #ff1493;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.2);
+        }
+
+        .modal-phrase {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.2em;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            border: 2px solid #ffd1dc;
+        }
+
+        .close-modal-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff8da1);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 35px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.4);
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .close-modal-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.6);
+        }
+
+        /* Kawaii Overlay for Modals */
+        .kawaii-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+            border-radius: 25px; /* Match modal content border-radius */
+        }
+
+        .hello-kitty-modal {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-image: url('https://i.pinimg.com/originals/b4/32/3e/b4323e46f8f3d0a3e3d2897e77965b0a.png'); /* Hello Kitty */
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        .hello-kitty-modal:nth-child(1) { top: 15px; left: 15px; animation-delay: 0s; }
+        .hello-kitty-modal:nth-child(2) { top: 15px; right: 15px; animation-delay: 1.5s; }
+        .hello-kitty-modal:nth-child(3) { bottom: 15px; left: 15px; animation-delay: 1s; }
+        .hello-kitty-modal:nth-child(4) { bottom: 15px; right: 15px; animation-delay: 2.5s; }
+
+        /* Confetti */
+        .heart-confetti, .kitty-confetti {
+            position: fixed;
+            z-index: 1003;
+            animation: fall 4s linear forwards;
+            pointer-events: none;
+            opacity: 0; /* Start invisible */
+            transition: opacity 0.5s;
+        }
+
+        .heart-confetti {
+            font-size: 1.5em;
+            color: #ff1493;
+        }
+
+        .kitty-confetti {
+            width: 30px;
+            height: 30px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Particle effects for counter items */
+        .particle {
+            position: absolute;
+            background-color: #ffb6c1;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0);
+            animation: particle-burst 0.8s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes particle-burst {
+            0% {
+                transform: scale(0) translateY(0);
+                opacity: 1;
+            }
+            20% {
+                transform: scale(1) translateY(-10px);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0) translateY(-50px);
+                opacity: 0;
+            }
+        }
+
+        /* New: Cursor Trails */
+        .cursor-trail {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(255, 105, 180, 0.7) 0%, rgba(255, 105, 180, 0) 70%);
+            animation: fadeOutTrail 1s forwards;
+            z-index: 999;
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        @keyframes fadeOutTrail {
+            0% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.1); }
+        }
+
+        /* New: Subtle Background Animation */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            background-color: rgba(255, 192, 203, 0.3); /* Light pink */
+            border-radius: 50%;
+            animation: float-bubble 20s infinite ease-in-out;
+            opacity: 0.7;
+            box-shadow: 0 0 15px rgba(255, 192, 203, 0.5);
+        }
+
+        @keyframes float-bubble {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0.7; }
+            50% { transform: translateY(50vh) translateX(20vw); opacity: 0.5; }
+            100% { transform: translateY(-20vh) translateX(-20vw); opacity: 0; }
+        }
+
+        /* NEW: Love Explosion for Max Love Meter */
+        .love-explosion {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1004; /* Above confetti */
+            pointer-events: none;
+        }
+
+        .love-explosion .heart-particle {
+            position: absolute;
+            background-color: #ff1493; /* Deep Pink */
+            border-radius: 50%;
+            transform: rotate(-45deg) scale(0);
+            animation: heart-explode 1.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .love-explosion .heart-particle::before,
+        .love-explosion .heart-particle::after {
+            content: "";
+            background-color: #ff1493;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .love-explosion .heart-particle::before {
+            top: -50%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .love-explosion .heart-particle::after {
+            left: 50%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes heart-explode {
+            0% {
+                transform: rotate(-45deg) scale(0);
+                opacity: 1;
+                filter: blur(0px);
+            }
+            20% {
+                transform: rotate(-45deg) scale(1.2);
+                opacity: 1;
+                filter: blur(0px);
+            }
+            100% {
+                transform: rotate(-45deg) scale(0) translateY(100px); /* Disappear downwards */
+                opacity: 0;
+                filter: blur(5px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-container {
+                padding: 25px;
+            }
+            .button-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            .hello-kitty-spinner {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+            .banner h1 {
+                font-size: 2em;
+            }
+            .main-container {
+                margin: 15px auto;
+                padding: 20px;
+                border-radius: 20px;
+            }
+            .kawaii-clock-container {
+                padding: 10px 15px;
+                max-width: 95%;
+            }
+            .kawaii-clock {
+                font-size: 1.4em;
+            }
+            .kawaii-clock-kitty {
+                width: 45px;
+                height: 45px;
+            }
+            .kawaii-clock-decoration { /* Adjust emoji size */
+                font-size: 1.2em;
+            }
+            .time-together-section h2 {
+                font-size: 1.8em;
+            }
+            .counter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .counter-item {
+                overflow: visible; /* To see particles outside */
+            }
+            .counter-number {
+                font-size: 2em;
+                width: 55px;
+                height: 55px;
+            }
+            .calendar-section {
+                padding: 20px;
+                border-radius: 20px;
+            }
+            .calendar-header h3 {
+                font-size: 1.6em;
+            }
+            .calendar-nav-button {
+                font-size: 1.4em;
+                width: 40px;
+                height: 40px;
+            }
+            .date-cell {
+                height: 45px;
+                font-size: 1em;
+            }
+            #daily-quote {
+                font-size: 1.4em;
+                padding: 20px;
+                margin: 30px auto;
+                border-left: 6px solid #ff69b4;
+            }
+            .love-meter-section h2 {
+                font-size: 1.8em;
+            }
+            .meter-button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+            .love-button {
+                padding: 20px;
+                font-size: 1.1em;
+                height: 120px;
+            }
+            .love-button i {
+                font-size: 2em;
+                margin-bottom: 8px;
+            }
+            .modal-content {
+                padding: 25px;
+                border-radius: 20px;
+            }
+            .modal-title {
+                font-size: 1.8em;
+            }
+            .modal-phrase {
+                font-size: 1.1em;
+            }
+            .close-modal-btn {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+            .hello-kitty-modal {
+                width: 45px;
+                height: 45px;
+            }
+            .hello-kitty-spinner {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner h1 {
+                font-size: 1.8em;
+            }
+            .kawaii-clock {
+                font-size: 1.2em;
+            }
+            .kawaii-clock-kitty {
+                width: 35px;
+                height: 35px;
+            }
+            .kawaii-clock-decoration { /* Adjust emoji size */
+                font-size: 1em;
+            }
+            .time-together-section h2 {
+                font-size: 1.6em;
+            }
+            .counter-grid {
+                grid-template-columns: 1fr; /* Stack on very small screens */
+            }
+            .counter-item {
+                padding: 10px;
+            }
+            .counter-number {
+                font-size: 1.8em;
+                width: 50px;
+                height: 50px;
+            }
+            .calendar-section {
+                padding: 15px;
+            }
+            .calendar-header h3 {
+                font-size: 1.4em;
+            }
+            .date-cell {
+                height: 40px;
+                font-size: 0.9em;
+            }
+            #daily-quote {
+                font-size: 1.2em;
+                padding: 15px;
+            }
+            .love-meter-section h2 {
+                font-size: 1.6em;
+            }
+            .meter-button {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+            .love-button {
+                padding: 15px;
+                font-size: 1em;
+                height: 100px;
+            }
+            .love-button i {
+                font-size: 1.8em;
+            }
+            .modal-content {
+                padding: 20px;
+            }
+            .modal-title {
+                font-size: 1.6em;
+            }
+            .modal-phrase {
+                font-size: 1em;
+            }
+            .close-modal-btn {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+            .hello-kitty-spinner {
+                width: 90px;
+                height: 90px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="banner">
-        <h2>NINILOVER APP</h2>
+    <div id="loading-screen">
+        <div class="hello-kitty-spinner"></div>
     </div>
 
+    <header class="banner animate__animated animate__fadeIn">
+        <h1>NINI <i class="bi bi-heart-fill"></i> KARIME</h1>
+    </header>
 
-    
-    <div class="clock-container" style="margin: 20px auto;">
-        <div id="kitty-icon"></div>
-        <div id="clock" style="font-size: 45px; color: #ff1493; font-weight: bold; text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);"></div>
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <div class="background-animation" id="backgroundAnimation"></div>
+
+    <main class="main-container animate__animated animate__fadeIn">
+        <section class="kawaii-clock-container" id="kawaiiClockContainer">
+            <img src="https://i.gifer.com/7V0.gif" alt="Hello Kitty Clock" class="kawaii-clock-kitty animate__animated animate__pulse animate__infinite">
+            <div class="kawaii-clock" id="kawaii-clock"></div>
+            <span class="kawaii-clock-decoration">✨</span>
+        </section>
+
+        <section class="time-together-section animate__animated animate__fadeInUp">
+            <h2>Nuestro Amor Florece Desde</h2>
+            <div class="counter-grid" id="counterGrid">
+                <div class="counter-item">
+                    <div class="counter-number" id="years">0</div>
+                    <div class="counter-label">Años</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="months">0</div>
+                    <div class="counter-label">Meses</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="days">0</div>
+                    <div class="counter-label">Días</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="hours">0</div>
+                    <div class="counter-label">Horas</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="calendar-section animate__animated animate__zoomIn">
+            <span class="calendar-decoration">💖</span>
+            <span class="calendar-decoration">💕</span>
+            <span class="calendar-decoration">💞</span>
+            <span class="calendar-decoration">💘</span>
+            <div class="calendar-header">
+                <button id="prevMonth" class="calendar-nav-button"><i class="bi bi-chevron-left"></i></button>
+                <h3 id="currentMonth"></h3>
+                <button id="nextMonth" class="calendar-nav-button"><i class="bi bi-chevron-right"></i></button>
+            </div>
+            <div class="weekdays">
+                <div>Dom</div>
+                <div>Lun</div>
+                <div>Mar</div>
+                <div>Mié</div>
+                <div>Jue</div>
+                <div>Vie</div>
+                <div>Sáb</div>
+            </div>
+            <div class="dates-grid" id="datesContainer"></div>
+        </section>
+
+        <p id="daily-quote" class="animate__animated animate__heartBeat animate__delay-2s">
+            <span>"Cargando frase de amor..."</span>
+        </p>
+
+        <section class="love-meter-section animate__animated animate__fadeInUp">
+            <h2>¡Mide Nuestro Amor! <i class="bi bi-balloon-heart-fill"></i></h2>
+            <div class="love-meter-container">
+                <div class="love-meter-bar-wrapper">
+                    <div class="love-meter-bar" id="loveMeterBar">
+                        <span class="love-meter-fill-icon">💖</span>
+                    </div>
+                </div>
+                <div class="love-meter-buttons">
+                    <button class="meter-button" id="increaseLove">¡Más Amor! 🥰</button>
+                    <button class="meter-button" id="resetLove">Resetear 🔄</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="button-grid animate__animated animate__fadeInUp animate__delay-1s">
+            <a href="nuestro-calendario.html" class="love-button">
+                <i class="bi bi-calendar-heart-fill"></i> Nuestro Calendario
+            </a>
+            <a href="recuerdosonline.html" class="love-button">
+                <i class="bi bi-images"></i> Nuestros Recuerdos
+            </a>
+            <a href="cartas.html" class="love-button">
+                <i class="bi bi-chat-heart-fill"></i> Cartitas de Amor
+            </a>
+            <a href="puzzle.html" class="love-button">
+                <i class="bi bi-puzzle-fill"></i> Juegos de Amor
+            </a>
+            <a href="songs.html" class="love-button">
+                <i class="bi bi-music-note-list"></i> Nuestras Canciones
+            </a>
+            <a href="future-dreams.html" class="love-button">
+                <i class="bi bi-stars"></i> Sueños Juntos
+            </a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Creado con ❤️ para Karime | &copy; 2025 NiniLover</p>
+    </footer>
+
+    <div id="specialNoteModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="kawaii-modal-overlay">
+                <div class="hello-kitty-modal"></div>
+                <div class="hello-kitty-modal"></div>
+                <div class="hello-kitty-modal"></div>
+                <div class="hello-kitty-modal"></div>
+            </div>
+            <h4 class="modal-title" id="noteModalTitle">Nota Especial</h4>
+            <p class="modal-phrase" id="noteModalPhrase"></p>
+            <img src="" alt="Special Image" class="modal-image" id="noteModalImage" style="display:none;">
+            <button class="close-modal-btn">Cerrar con Amor ❤️</button>
+        </div>
     </div>
-    <!----<section id="galeria-reciente" style="padding: 2rem;">
-        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Recuerdos de la Ultima vez contigo</h2>
-      
-        <div class="carousel-container">
-          <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
-          
-          <div class="carousel-slide">
-            <img src="https://i.ibb.co/ynn63G7M/IMG-20250418-WA0004.jpg" alt="Foto con Nini">
-            
-            <img src="https://i.ibb.co/nM15F8VD/AGC-20250419-190406693.jpg" alt="Foto con Nini">
-            <img src="https://i.ibb.co/mrYrRVhT/IMG-20250420-WA0025.jpg" alt="Foto con Nini">
-            <img src="https://i.ibb.co/fdfw20KB/IMG-20250420-WA0031.jpg" alt="Foto con Nini">
-            <img src="https://i.ibb.co/dwGfG4DV/IMG-20250420-WA0030.jpg" alt="Foto con Nini">
-            <img src="https://i.ibb.co/BKBTWHt8/IMG-20250420-WA0029-1.jpg" alt="Foto con Nini">
-            <img src="https://i.ibb.co/nsYZBLb7/IMG-20250420-WA0028.jpg" alt="Foto con Nini">
-            <img src="https://i.ibb.co/gFFKP5Dr/IMG-20250420-WA0027.jpg" alt="Foto con Nini">
-            
-          </div>
-      
-          <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
-        </div>
-      </section>>
-      >-->
-      
-    
 
-    <div class="main-container">
-
-        <div class="hearts-background">
-            <div class="image" style="top: 5%; left: 5%; animation-duration: 12s; background-image: url('https://i.imgur.com/LhrcLzr.gif');"></div>
-            <div class="image" style="top: 15%; left: 25%; animation-duration: 10s; background-image: url('https://i.imgur.com/LhrcLzr.gif');"></div>
-            <div class="image" style="top: 45%; left: 45%; animation-duration: 8s; background-image: url('https://i.imgur.com/LhrcLzr.gif');"></div>
-            <div class="image" style="top: 65%; left: 65%; animation-duration: 11s; background-image: url('https://i.imgur.com/LhrcLzr.gif');"></div>
-            <div class="image" style="top: 75%; left: 15%; animation-duration: 9s; background-image: url('https://i.imgur.com/LhrcLzr.gif');"></div>
-        </div>
-
-        <div class="content-wrapper">
-            <div class="banner">
-                <h2>NINILOVER VERSION</h2>
+    <div id="trampositaModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="kawaii-modal-overlay">
+                <div class="hello-kitty-modal"></div>
+                <div class="hello-kitty-modal"></div>
             </div>
+            <h4 class="modal-title">¡Sorpresa Futura!</h4>
+            <p class="modal-phrase">¡Eso es un recuerdo que aún no vivimos, mi amor! Pero te prometo que será hermoso. ✨</p>
+            <img src="https://i.gifer.com/1B2C.gif" alt="Tramposita Kitty" class="modal-image">
+            <button class="close-modal-btn">Entendido, mi amor. 😊</button>
+        </div>
+    </div>
 
-            <p id="daily-quote">Eres la luz de mi vida. ✨</p>
-
-            <div class="button-grid">
-                <a href="recuerdosonline.html" class="button-recuerdos">Nuestros recuerdos NEW!</a>
-                <a href="cartas.html" class="button-recuerdos"> Cartas</a>
-                <a href="time.html" class="button-recuerdos"> Tiempo de relación</a>
-                <a href="playlist.html" class="button-recuerdos"> Playlist</a>
-                <a href="songs.html" class="button-recuerdos">Te la dedique porque</a>
-                
-
+    <div id="maxLoveModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="kawaii-modal-overlay">
+                <div class="hello-kitty-modal"></div>
+                <div class="hello-kitty-modal"></div>
+                <div class="hello-kitty-modal"></div>
+                <div class="hello-kitty-modal"></div>
+                <div class="hello-kitty-modal"></div>
+                <div class="hello-kitty-modal"></div>
             </div>
-
-    <h2>CALENDARIO NINILOVER</h2>
-
-    
-
-    <div class="calendar-container">
-        <div class="header">
-            <button onclick="changeMonth(-1)">◁</button>
-            <span id="monthYear"></span>
-            <button onclick="changeMonth(1)">▷</button>
+            <h4 class="modal-title">¡¡Nuestro Amor Es Infinito!! 💖</h4>
+            <p class="modal-phrase">
+                ¡Has llenado la barra de nuestro amor al máximo! Esto es solo una pequeña muestra del amor incondicional que siento por ti, mi Karime.
+                Eres mi universo, mi risa, mi calma y mi más grande aventura. Cada momento a tu lado es un tesoro.
+                ¡Gracias por ser tú, mi vida! Te amo más allá de las palabras.
+            </p>
+            <img src="https://i.gifer.com/origin/f1/f15031b269324e93149ec9c0e57f1853_w200.gif" alt="Infinite Love" class="modal-image">
+            <button class="close-modal-btn">Mi Amor Es Infinito También 😍</button>
         </div>
+    </div>
 
-        <div class="timer-container" style="margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.9); border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
-            <h3 style="color: #ff69b4; margin-bottom: 15px;">Tiempo Juntos 💑</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px;">
-                <div style="background: #fff; padding: 8px; border-radius: 10px;">
-                    <div id="years" style="font-size: 1.8rem; font-weight: bold; color: #ff69b4;">0</div>
-                    <div style="color: #666; font-size: 0.8rem;">Años</div>
-                </div>
-                <div style="background: #fff; padding: 8px; border-radius: 10px;">
-                    <div id="months" style="font-size: 1.8rem; font-weight: bold; color: #ff69b4;">0</div>
-                    <div style="color: #666; font-size: 0.8rem;">Meses</div>
-                </div>
-                <div style="background: #fff; padding: 8px; border-radius: 10px;">
-                    <div id="days" style="font-size: 1.8rem; font-weight: bold; color: #ff69b4;">0</div>
-                    <div style="color: #666; font-size: 0.8rem;">Días</div>
-                </div>
-            </div>
-        </div>
-        <div class="days">
-            <div class="day">Dom</div>
-            <div class="day">Lun</div>
-            <div class="day">Mar</div>
-            <div class="day">Mié</div>
-            <div class="day">Jue</div>
-            <div class="day">Vie</div>
-            <div class="day">Sáb</div>
-        </div>
-        
-        <div class="dates" id="dates"></div>
-        <script src="calendar_data.js"></script>
-            <script src="calendar.js"></script>
+    <audio id="clickSound" src="https://www.soundjay.com/buttons/beep-07.mp3" preload="auto"></audio>
+    <audio id="specialDateSound" src="https://www.soundjay.com/misc/sounds/ding-01.mp3" preload="auto"></audio>
+    <audio id="loveMeterSound" src="https://www.soundjay.com/buttons/button-20.mp3" preload="auto"></audio>
+    <audio id="kittyMeowSound" src="https://www.soundjay.com/animals/cat-meow-1.mp3" preload="auto"></audio>
+    <audio id="sparkleSound" src="https://www.soundjay.com/misc/sounds/sparkle-01.mp3" preload="auto"></audio>
+    <audio id="maxLoveMusic" src="https://www.soundjay.com/free-music/music-box-melody-1.mp3" preload="auto"></audio>
+
 
     <script>
-        // Fecha de inicio de la relación
-        const startDate = new Date('2024-09-20T00:00:00');
+        // Calendar Data (embedded directly)
+        const specialDates = {
+            "2025": {
+                "4": { // April (month 4)
+                    "17": {
+                        phrase: "¡Nuestro día especial! El día en que nuestros caminos se cruzaron y todo cambió. Te amo infinitamente, mi dulce Karime. 🥰",
+                        img: "https://i.pinimg.com/564x/4e/1b/5e/4e1b5e5e4f9b8c0a2a4b0d0d8f0f0f0f.jpg" // Example image
+                    },
+                    "20": {
+                        phrase: "¡Un día de risas y miradas cómplices! Siempre recordaré este momento. ❤️",
+                        img: "https://i.pinimg.com/originals/f3/f9/5e/f3f95e8e8e8e8e8e8e8e8e8e8e8e.gif" // Example GIF
+                    }
+                },
+                "5": { // May (month 5)
+                    "5": {
+                        phrase: "Celebrando un momento inolvidable. Eres mi alegría. ✨",
+                        img: "https://i.pinimg.com/originals/c9/2b/1b/c92b1b1b1b1b1b1b1b1b1b1b1b1b1b1b.jpg" // Example image
+                    }
+                },
+                "6": {
+  "1":  { "phrase": "Tú eres la magia que convierte cualquier día gris en un cuento de amor ♡", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "2":  { "phrase": "Contigo no necesito finales felices... porque cada momento ya lo es >///<", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "3":  { "phrase": "Cuando sonríes, mi mundo se ilumina más que mil estrellas n.n", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "4":  { "phrase": "Eres mi razón favorita para creer en lo bonito de la vida, mi ternurita uwu", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "5":  { "phrase": "No sé si existe el paraíso, pero si tú estás, yo ya quiero quedarme ahí ♡", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "6":  { "phrase": "Eres mi pedacito de cielo disfrazado de persona linda >///<", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "7":  { "phrase": "Cada vez que te pienso, mi corazón hace fiesta n.n", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "8":  { "phrase": "Tus ojitos tienen el poder de derretirme sin decir ni una palabra uwu", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "9":  { "phrase": "Si tuviera que elegir entre mil vidas, en todas te escogería a ti ♡", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "10": { "phrase": "Estar contigo es como un abrazo eterno al alma >///<", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "11": { "phrase": "Tu amor es mi superpoder, mi chiquita preciosa n.n", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "12": { "phrase": "Cada 'te amo' tuyo es como un besito directo al corazón uwu", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "13": { "phrase": "Tu risa debería ser patrimonio de la ternura mundial ♡", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "14": { "phrase": "Eres mi lugar favorito donde perderme y nunca querer volver >///<", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "15": { "phrase": "Desde que llegaste, mi corazón aprendió a bailar de alegría n.n", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "16": { "phrase": "Tú y yo somos la mejor coincidencia que le pasó al amor uwu", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "17": { "phrase": "Estás hecha de cositas bonitas, abrazos cálidos y besitos dulces ♡", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "18": { "phrase": "Tus besos tienen la receta perfecta para curarme cualquier tristeza >///<", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "19": { "phrase": "No hay rincón en mí que no te quiera con locura n.n", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "20": { "phrase": "Me haces sentir como si el amor me abrazara por dentro uwu", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "21": { "phrase": "Eres el poema más bonito que el universo me susurró al oído ♡", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "22": { "phrase": "Hasta el silencio contigo suena a caricias >///<", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "23": { "phrase": "Mi vida se volvió un lugar más bonito desde que te quedaste en ella n.n", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "24": { "phrase": "Eres mi paz, mi risa, mi cosita favorita del mundo uwu", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "25": { "phrase": "Eres la historia que quiero contarle a todas mis sonrisas ♡", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "26": { "phrase": "Cuando pienso en amor, solo apareces tú, mi chiquita linda >///<", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "27": { "phrase": "Me gustas tanto que hasta mis suspiros se te escapan n.n", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "28": { "phrase": "Tu amor es lo más cerquita del cielo que he sentido uwu", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "29": { "phrase": "Cada 'buenos días' tuyo es una caricia al alma ♡", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" },
+  "30": { "phrase": "No sé qué hice para merecerte, pero prometo cuidarte siempre >///<", "img": "https://i.pinimg.com/originals/c7/21/4d/c7214d84426c8645537b14753d1ad5ca.gif" }
+},
+                "7": { // July (month 7) - Example for future month
+                    "1": {
+                        phrase: "¡Este día será el inicio de algo maravilloso! No puedo esperar a vivirlo contigo. 💖",
+                        img: "https://i.gifer.com/origin/79/794a0808a3f85108f9c185a0c0291931_w200.gif" // Future special date
+                    },
+                    "10": {
+                        phrase: "Una cita sorpresa que estamos por descubrir... ¡Te tengo una sorpresa para este día! 💌",
+                        img: "https://i.gifer.com/embedded/R31.gif"
+                    }
+                },
+                "8": { // August (month 8)
+                    "20": {
+                        phrase: "El día en que celebramos tu existencia, mi amor. ¡Feliz cumpleaños adelantado, mi vida! Eres el regalo más grande. 🎁",
+                        img: "https://i.gifer.com/1B2C.gif" // Example GIF
+                    }
+                },
+                "9": { // September (month 9)
+                    "20": {
+                        phrase: "¡Aniversario de nuestro amor! 🎊 El día en que todo comenzó y nuestros corazones se unieron. ¡Feliz Aniversario, mi vida! Te amo más que a nada. 🎉",
+                        img: "https://i.gifer.com/P0iJ.gif" // Anniversary GIF
+                    }
+                }
+                // Add more special dates as needed
+            }
+        };
 
-        function updateTimer() {
+        function getSpecialNote(year, month, day) { // Changed order to match object structure
+            return specialDates[year] && specialDates[year][month] && specialDates[year][month][day] ?
+                   specialDates[year][month][day] : null;
+        }
+
+        // Global variables for calendar
+        let currentDate = new Date();
+        const monthNames = [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+
+        // Sound Elements
+        const clickSound = document.getElementById('clickSound');
+        const specialDateSound = document.getElementById('specialDateSound');
+        const loveMeterSound = document.getElementById('loveMeterSound');
+        const kittyMeowSound = document.getElementById('kittyMeowSound');
+        const sparkleSound = document.getElementById('sparkleSound'); // New sound
+        const maxLoveMusic = document.getElementById('maxLoveMusic'); // NEW: Max love music
+
+        function playSound(audioElement) {
+            if (audioElement) {
+                audioElement.currentTime = 0; // Rewind to start
+                audioElement.play().catch(e => console.log("Sound play failed:", e)); // Catch potential errors
+            }
+        }
+
+        function stopSound(audioElement) {
+            if (audioElement) {
+                audioElement.pause();
+                audioElement.currentTime = 0;
+            }
+        }
+
+        // --- Core Functions ---
+
+        // Function to update the "Time Together" counter
+        function updateTimeTogetherCounter() {
+            const startDate = new Date('2024-09-20T00:00:00'); // Our special start date
             const now = new Date();
             const diff = now - startDate;
 
-            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
-            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25)); // Account for leap years
+            const remainingAfterYears = diff % (1000 * 60 * 60 * 24 * 365.25);
+            const months = Math.floor(remainingAfterYears / (1000 * 60 * 60 * 24 * 30.4375)); // Average month length
+            const remainingAfterMonths = remainingAfterYears % (1000 * 60 * 60 * 24 * 30.4375);
+            const days = Math.floor(remainingAfterMonths / (1000 * 60 * 60 * 24));
+            const remainingAfterDays = remainingAfterMonths % (1000 * 60 * 60 * 24);
+            const hours = Math.floor(remainingAfterDays / (1000 * 60 * 60));
 
             document.getElementById('years').textContent = years;
             document.getElementById('months').textContent = months;
             document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
         }
 
-        // Actualizar el contador cada minuto
-        setInterval(updateTimer, 60000);
-        updateTimer(); // Actualización inicial
-    </script>
-    </div>
-
-    <div class="overlay" id="overlay">
-        <div class="overlay-content">
-            <button class="close-btn" onclick="closeOverlay()">×</button>
-            <img src="https://via.placeholder.com/300" alt="Imagen sobrepuesta" id="overlayImg">
-            <div class="phrase" id="overlayPhrase">¡Este es un día especial!</div>
-        </div>
-        
-    </div>
-    
-    
-
-<div class="love-letter" id="menu">
-        <h2>ESTA CANCION SIEMPRE SERA NUESTRA</h2>
-         <div style="width: 20%; max-width: 500px; margin: 20px auto;">
-        <img src="https://s3.getstickerpack.com/storage/uploads/sticker-pack/xiong-mao-yi-erdi-san-dan-1/sticker_8.gif?a826bff1c7a1649a13e00b1550f1cc2b" alt="Descripción de la imagen" 
-             style="width: 100%; height: auto;">
-    </div>
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/66wkCYWlXzSTQAfnsPBptt?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        <div>
-            <div>
-
-            </div>
-        </div>
-
-<div>
-    <div>
-        
-    
-    </div>
-</div>
-
-    <!-- Elementos kawaii decorativos -->
-    <div class="kawaii-element kawaii-bow" style="top: 20px; left: 20px;"></div>
-    <div class="kawaii-element kawaii-star" style="top: 50px; right: 30px;"></div>
-    <div class="kawaii-element kawaii-bow" style="bottom: 30px; left: 40px;"></div>
-    <div class="kawaii-element kawaii-star" style="bottom: 50px; right: 50px;"></div>
-
-    <div class="copyright">
-        Página hecha para Karime - 2025
-        
-    </div>
-
-    <script>
-        // Carrusel automático
-        let currentIndex = 0;
-        const images = document.querySelectorAll('.carousel img');
-
-        function moveCarousel() {
-            currentIndex = (currentIndex + 1) % images.length;
-            const offset = -currentIndex * 100;
-            images.forEach(img => img.style.transform = `translateX(${offset}%)`);
-        }
-        setInterval(moveCarousel, 3000);
-
-        // Frases diarias de amor y función para mostrar notas especiales
-        const loveQuotes = [
-            "Eres mi razón de sonreír cada día. ❤️",
-            "Cada momento contigo es un tesoro. 💎",
-            "Te amo más de lo que las palabras pueden decir. 💕",
-            "Mi corazón late solo por ti. 💓",
-            "Juntos somos invencibles. 🌟",
-            "Tu sonrisa ilumina mi mundo. 😊",
-            "Eres mi inspiración y mi paz. 🌈",
-            "Contigo, cada día es un regalo. 🎁",
-            "Eres la melodía que alegra mi corazón. 🎶",
-            "Mi amor por ti crece cada día más. 🌹"
-        ];
-        const today = new Date().getDate() % loveQuotes.length;
-        document.getElementById('daily-quote').innerText = loveQuotes[today];
-
-        // Función para mostrar notas especiales
-        function showSpecialNote(phrase, imgUrl) {
-            const modal = document.createElement('div');
-            modal.className = 'special-note-modal';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <img src="${imgUrl}" alt="Momento especial">
-                    <p class="special-phrase">${phrase}</p>
-                    <button onclick="this.parentElement.parentElement.remove()">Cerrar</button>
-                </div>
-            `;
-            document.body.appendChild(modal);
-        }
-
-        // Calendario en vivo con notas personalizadas
-        let currentDate = new Date();
-        
-        // Cargar notas guardadas y combinarlas con las predefinidas
-        let specialNotes = {};
-
-        function loadSpecialNotes() {
-            // Primero cargar las notas predefinidas del archivo calendar_data.js
-            const predefinedNotes = window.specialNotes || {};
-            Object.assign(specialNotes, predefinedNotes);
-
-            // Luego cargar las notas guardadas en localStorage
-            const savedNotes = localStorage.getItem('specialNotes');
-            if (savedNotes) {
-                const parsedNotes = JSON.parse(savedNotes);
-                Object.assign(specialNotes, parsedNotes);
-            }
-        }
-
-        function loadSpecialNotes() {
-            const savedNotes = localStorage.getItem('specialNotes');
-            if (savedNotes) {
-                Object.assign(specialNotes, JSON.parse(savedNotes));
-            }
-        }
-
-        function saveSpecialNote(month, day, phrase, img) {
-            const year = currentDate.getFullYear().toString();
-            if (!specialNotes[year]) {
-                specialNotes[year] = {};
-            }
-            if (!specialNotes[year][month]) {
-                specialNotes[year][month] = {};
-            }
-            specialNotes[year][month][day] = { phrase, img };
-            localStorage.setItem('specialNotes', JSON.stringify(specialNotes));
-        }
-
-        function getSpecialNote(month, day, year = currentDate.getFullYear().toString()) {
-            // Buscar primero en las notas guardadas
-            if (specialNotes[year] && specialNotes[year][month] && specialNotes[year][month][day]) {
-                return specialNotes[year][month][day];
-            }
-            return null;
-        }
-
-        function addSpecialNote() {
-            const dateInput = document.getElementById('noteDate');
-            const phraseInput = document.getElementById('notePhrase');
-            const imageInput = document.getElementById('noteImage');
-
-            if (!dateInput.value || !phraseInput.value) {
-                alert('Por favor completa la fecha y la frase');
-                return;
-            }
-
-            const date = new Date(dateInput.value);
-            const month = (date.getMonth() + 1).toString();
-            const day = date.getDate();
-            const imgUrl = imageInput.value || 'https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif';
-
-            saveSpecialNote(month, day, phraseInput.value, imgUrl);
-            renderCalendar();
-
-            // Limpiar el formulario
-            dateInput.value = '';
-            phraseInput.value = '';
-            imageInput.value = '';
-
-            alert('¡Frase guardada con éxito! 💖');
-        }
-
-        // Cargar notas guardadas al iniciar
-        loadSpecialNotes();
-
-        let specialNotes = {};
-
-        function loadSpecialNotes() {
-            const savedNotes = localStorage.getItem('specialNotes');
-            if (savedNotes) {
-                Object.assign(specialNotes, JSON.parse(savedNotes));
-            }
-        }
-
-        function saveSpecialNote(month, day, phrase, img) {
-            const year = currentDate.getFullYear().toString();
-            if (!specialNotes[year]) {
-                specialNotes[year] = {};
-            }
-            if (!specialNotes[year][month]) {
-                specialNotes[year][month] = {};
-            }
-            specialNotes[year][month][day] = { phrase, img };
-            localStorage.setItem('specialNotes', JSON.stringify(specialNotes));
-        }
-
-        function getSpecialNote(month, day, year = currentDate.getFullYear().toString()) {
-            // Buscar primero en las notas guardadas
-            if (specialNotes[year] && specialNotes[year][month] && specialNotes[year][month][day]) {
-                return specialNotes[year][month][day];
-            }
-            return null;
-        }
-
-        function addSpecialNote() {
-            const dateInput = document.getElementById('noteDate');
-            const phraseInput = document.getElementById('notePhrase');
-            const imageInput = document.getElementById('noteImage');
-
-            if (!dateInput.value || !phraseInput.value) {
-                alert('Por favor completa la fecha y la frase');
-                return;
-            }
-
-            const date = new Date(dateInput.value);
-            const month = (date.getMonth() + 1).toString();
-            const day = date.getDate();
-            const imgUrl = imageInput.value || 'https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif';
-
-            saveSpecialNote(month, day, phraseInput.value, imgUrl);
-            renderCalendar();
-
-            // Limpiar el formulario
-            dateInput.value = '';
-            phraseInput.value = '';
-            imageInput.value = '';
-
-            alert('¡Frase guardada con éxito! 💖');
-        }
-
-        // Cargar notas guardadas al iniciar
-        loadSpecialNotes();
-
-        const monthYear = document.getElementById("monthYear");
-        const datesContainer = document.getElementById("dates");
-
-        const monthNames = [
-            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-        ];
-
-        let currentDate = new Date();
-
+        // Function to render the calendar
         function renderCalendar() {
-            const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-            document.getElementById('monthYear').textContent = `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+            const monthElement = document.getElementById('currentMonth');
+            const datesContainer = document.getElementById('datesContainer');
 
-            const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-            const startDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
-            const today = new Date();
-            const currentMonth = (currentDate.getMonth() + 1).toString();
-
-            const datesContainer = document.getElementById('dates');
+            monthElement.textContent = monthNames[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
             datesContainer.innerHTML = '';
 
-            // Agregar celdas vacías para los días antes del primer día del mes
-            for (let i = 0; i < startDay; i++) {
-                const emptyCell = document.createElement('div');
-        emptyCell.classList.add('date', 'empty');
-        datesContainer.appendChild(emptyCell);
-    }
+            const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+            const firstDayIndex = firstDayOfMonth.getDay(); // 0 = Sunday, 1 = Monday, etc.
+            const totalDays = lastDayOfMonth.getDate();
+            const today = new Date(); // Get today's date once per render
+            today.setHours(0, 0, 0, 0); // Normalize today to start of day
 
-    // Crear los días del mes
-    for (let day = 1; day <= daysInMonth; day++) {
-        const dateElement = document.createElement('div');
-        dateElement.classList.add('date');
-        dateElement.textContent = day;
-
-        const isToday = today.getDate() === day && 
-                       today.getMonth() === currentDate.getMonth() && 
-                       today.getFullYear() === currentDate.getFullYear();
-
-        if (isToday) {
-            dateElement.classList.add('today');
-        }
-
-        // Verificar si hay una nota especial para este día
-        const note = getSpecialNote(currentMonth, day);
-        if (note) {
-            dateElement.classList.add('special-date');
-            dateElement.title = note.phrase;
-            const indicator = document.createElement('span');
-            indicator.classList.add('special-indicator');
-            indicator.innerHTML = '❤️';
-            dateElement.appendChild(indicator);
-        }
-
-        dateElement.addEventListener('click', () => {
-            if (note) {
-                showSpecialNote(note.phrase, note.img);
+            // Fill leading empty cells
+            for (let i = 0; i < firstDayIndex; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.classList.add('date-cell', 'inactive');
+                datesContainer.appendChild(emptyDay);
             }
-        });
 
-        datesContainer.appendChild(dateElement);
-    }
-}
+            // Fill date cells
+            for (let day = 1; day <= totalDays; day++) {
+                const dateElement = document.createElement('div');
+                dateElement.classList.add('date-cell');
+                dateElement.textContent = day;
 
+                const currentDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+                currentDay.setHours(0, 0, 0, 0); // Normalize currentDay to start of day
+
+                // Check if it's today
+                if (currentDay.getTime() === today.getTime()) {
+                    dateElement.classList.add('today');
+                }
+
+                // Check for special dates
+                const yearNum = currentDate.getFullYear().toString();
+                const monthNum = (currentDate.getMonth() + 1).toString(); // getMonth() is 0-indexed
+                const dayNum = day.toString();
+
+                const specialNote = getSpecialNote(yearNum, monthNum, dayNum);
+
+                if (specialNote) {
+                    dateElement.classList.add('special-date');
+                    const indicator = document.createElement('span');
+                    indicator.classList.add('special-indicator');
+                    indicator.textContent = '💖'; // Heart indicator for special dates
+                    dateElement.appendChild(indicator);
+                }
+
+                // Logic for past, today, and future dates
+                if (currentDay < today) { // Past date
+                    if (specialNote) { // Past and special
+                         dateElement.addEventListener('click', () => {
+                            playSound(specialDateSound); // Play a special sound
+                            showSpecialNoteModal(specialNote.phrase, specialNote.img);
+                        });
+                    } else { // Past and not special
+                         dateElement.addEventListener('click', () => {
+                            playSound(clickSound);
+                            // Optional: default message for any past date
+                            showSpecialNoteModal(`El ${day}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}. Un día más de nuestro amor.`, 'https://i.gifer.com/origin/d7/d762f0254c25675e24b07e7811e7492a.gif');
+                        });
+                    }
+                } else if (currentDay.getTime() === today.getTime()) { // Today
+                    if (specialNote) { // Today and special
+                        dateElement.addEventListener('click', () => {
+                            playSound(specialDateSound);
+                            showSpecialNoteModal(specialNote.phrase, specialNote.img);
+                        });
+                    } else { // Today and not special
+                         dateElement.addEventListener('click', () => {
+                            playSound(clickSound);
+                            showSpecialNoteModal(`¡Hoy es ${day}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}! Un día para crear nuevos recuerdos juntos. 😊`, 'https://i.gifer.com/origin/d7/d762f0254c25675e24b07e7811e7492a.gif');
+                        });
+                    }
+                } else { // Future date (currentDay > today)
+                    dateElement.classList.add('future-date');
+                    // We attach the click event only if there's a phrase, otherwise it just has the lock
+                    // If it's a future special date, it will still show the lock and "Tramposita"
+                    dateElement.addEventListener('click', () => {
+                        playSound(clickSound); // Play click sound for tramposita
+                        showTrampositaModal();
+                    });
+                }
+
+                datesContainer.appendChild(dateElement);
+            }
+        }
+
+        // Function to change month in calendar
         function changeMonth(offset) {
             currentDate.setMonth(currentDate.getMonth() + offset);
             renderCalendar();
-            // Cargar notas guardadas después de cambiar de mes
-            loadSpecialNotes();
+            playSound(clickSound); // Play sound on month change
         }
 
-        function openOverlay(day, isToday, note) {
-            const overlay = document.getElementById("overlay");
-            const menu = document.getElementById("menu");
-            const phrase = document.getElementById("overlayPhrase");
-            const img = document.getElementById("overlayImg");
+        // Function to update the kawaii clock
+        function updateKawaiiClock() {
+            const clockElement = document.getElementById('kawaii-clock');
+            if (!clockElement) return;
 
-            if (note) {
-                phrase.innerText = note.phrase;
-                img.src = note.img || "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif";
-            } else {
-                phrase.innerText = `A pesar de la distancia, este ${day} de ${monthNames[currentDate.getMonth()]} me siento más cerca de ti que nunca, porque te llevo siempre en mi corazón. ❤️`;
-                img.src = "https://media.tenor.com/ZUmTKQanA2UAAAAd/pucca.gif";
-            }
-
-            menu.classList.add('blurred');
-            overlay.style.display = "flex";
-            overlay.style.opacity = "0";
-            setTimeout(() => {
-                overlay.style.opacity = "1";
-            }, 50);
-        }
-
-        function closeOverlay() {
-            document.getElementById("overlay").style.display = "none";
-            document.getElementById("menu").classList.remove('blurred');
-        }
-
-        // Inicializar el calendario y cargar las notas
-        loadSpecialNotes();
-        renderCalendar();
-    </script>
-<script>
-    let currentSlide = 0;
-  
-    function moveSlide(direction) {
-      const slide = document.querySelector('.carousel-slide');
-      const totalSlides = slide.children.length;
-      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-      slide.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-  </script>
-  
- <script>
-        function updateClock() {
             const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
+            let hours = now.getHours();
             const minutes = now.getMinutes().toString().padStart(2, '0');
             const seconds = now.getSeconds().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
 
-            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+            hours = hours % 12;
+            hours = hours ? hours : 12; // The hour '0' should be '12'
+
+            // Wrap each part in a span for potential individual animations/styles
+            clockElement.innerHTML = `<span class="time-part hour">${hours}</span>:<span class="time-part minute">${minutes}</span>:<span class="time-part second">${seconds}</span> <span class="ampm-part">${ampm}</span> <span class="kawaii-clock-decoration">✨</span>`;
         }
 
-        setInterval(updateClock, 1000);
-        updateClock(); // Llamar de inmediato para mostrar la hora sin esperar 1 segundo
-    </script>
-    
-    <div>
-        <body>
+        // --- New Novelty Features ---
+
+        // Romantic Quotes Array
+        const romanticQuotes = [
+            "Cada día a tu lado es un regalo que atesoro en lo más profundo de mi corazón. Te amo infinitamente, mi dulce Karime.",
+            "En tus ojos encuentro el universo entero, mi amor. Gracias por iluminar mi vida con tu sonrisa.",
+            "Mi felicidad se escribe con tu nombre, mi cielo. Eres el sueño que nunca supe que tenía.",
+            "Contigo, cada momento es una aventura y cada día una promesa de amor eterno. Eres mi musa, mi Karime.",
+            "El amor verdadero no tiene final feliz, porque el amor verdadero nunca termina. Y el nuestro, apenas comienza.",
+            "Eres la melodía más hermosa que mi corazón ha escuchado. Te amo.",
+            "Cuando estoy contigo, el tiempo se detiene y mi mundo se llena de magia. Eres mi persona favorita.",
+            "Prometo amarte, protegerte y hacerte sonreír cada día de nuestras vidas. Mi amor por ti es infinito.",
+            "No hay distancia que pueda apagar la llama de nuestro amor. Siempre estás en mi mente y en mi corazón.",
+            "Gracias por cada risa, cada abrazo, cada mirada que me hace sentir que estoy en casa. Eres mi hogar, Karime."
+        ];
+
+        let currentQuoteIndex = 0;
+
+        function displayRandomQuote() {
+            const quoteElement = document.getElementById('daily-quote').querySelector('span');
+            // Shuffle quotes if needed, or just cycle
+            quoteElement.textContent = romanticQuotes[currentQuoteIndex];
+            currentQuoteIndex = (currentQuoteIndex + 1) % romanticQuotes.length;
+        }
+
+        // Love Meter Logic
+        let loveLevel = 0;
+        const maxLove = 100; // Max percentage
+        const loveMeterBar = document.getElementById('loveMeterBar');
+
+        function updateLoveMeter() {
+            loveMeterBar.style.width = `${loveLevel}%`;
+            if (loveLevel > 0) {
+                loveMeterBar.classList.add('filled');
+            } else {
+                loveMeterBar.classList.remove('filled');
+            }
+
+            // NEW: Check if loveLevel reaches max
+            if (loveLevel === maxLove) {
+                showMaxLoveSurprise();
+            }
+        }
+
+        function increaseLove() {
+            if (loveLevel < maxLove) {
+                loveLevel = Math.min(maxLove, loveLevel + 10); // Increase by 10%
+                updateLoveMeter();
+                playSound(loveMeterSound); // Play sound on love increase
+            }
+        }
+
+        function resetLove() {
+            loveLevel = 0;
+            updateLoveMeter();
+            playSound(clickSound); // Play general click sound for reset
+            stopSound(maxLoveMusic); // NEW: Stop music when resetting
+        }
+
+
+        // --- Visual Effects & Modals ---
+
+        // Function to create floating hearts background
+        function createFloatingHearts() {
+            const heartsContainer = document.getElementById('floatingHearts');
+            const numberOfHearts = 25; // More hearts for richer effect
+
+            for (let i = 0; i < numberOfHearts; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+
+                const left = Math.random() * 100;
+                const size = Math.random() * 20 + 15; // Larger hearts
+                const animationDuration = Math.random() * 10 + 12; // Longer duration
+                const delay = Math.random() * 10;
+
+                heart.style.left = `${left}%`;
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                heart.style.animationDuration = `${animationDuration}s`;
+                heart.style.animationDelay = `${delay}s`;
+
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Modal Functions
+        function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                if (modalId === 'specialNoteModal' || modalId === 'maxLoveModal') { // Also for maxLoveModal
+                    createKawaiiConfetti();
+                }
+            }
+        }
+
+        function hideModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                clearTimeout(confettiTimeout);
+                document.querySelectorAll('.heart-confetti, .kitty-confetti').forEach(element => element.remove());
+                // NEW: Stop maxLoveMusic if closing the maxLoveModal
+                if (modalId === 'maxLoveModal') {
+                    stopSound(maxLoveMusic);
+                }
+            }
+        }
+
+        function showSpecialNoteModal(phrase, imageUrl) {
+            const modalTitle = document.getElementById('noteModalTitle');
+            const modalPhrase = document.getElementById('noteModalPhrase');
+            const modalImage = document.getElementById('noteModalImage');
+
+            modalTitle.textContent = "¡Un Recuerdo Precioso!";
+            modalPhrase.textContent = phrase;
+
+            if (imageUrl) {
+                modalImage.src = imageUrl;
+                modalImage.style.display = 'block';
+            } else {
+                modalImage.style.display = 'none';
+            }
+
+            showModal('specialNoteModal');
+        }
+
+        function showTrampositaModal() {
+            showModal('trampositaModal');
+        }
+
+        // NEW: Function for Max Love Surprise
+        function showMaxLoveSurprise() {
+            playSound(maxLoveMusic); // Play special music
+            createLoveExplosion(); // Create a heart explosion
+            showModal('maxLoveModal'); // Show the dedicated modal
+        }
+
+        // Event listeners for closing modals
+        document.querySelectorAll('.close-modal-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const modal = event.target.closest('.modal-overlay');
+                if (modal) {
+                    playSound(clickSound); // Play sound when closing modal
+                    hideModal(modal.id);
+                }
+            });
+        });
+
+        // Global variable for confetti timeout
+        let confettiTimeout;
+
+        // Function to create confetti effect (hearts and Hello Kitty)
+        function createKawaiiConfetti() {
+            const symbols = ['❤️', '💕', '💘', '💖', '💗', '✨'];
+            const kittyImages = [
+                'https://i.pinimg.com/originals/b4/32/3e/b4323e46f8f3d0a3e3d2897e77965b0a.png', // Hello Kitty 1
+                'https://i.pinimg.com/originals/39/df/dd/39dfdd9b0d2c3e621f97ce3c31d1ab07.png', // Hello Kitty 2
+                'https://i.pinimg.com/originals/06/80/56/068056c4c410baaf11fc953d0f63c601.png' // Hello Kitty 3
+            ];
+
+            const bodyRect = document.body.getBoundingClientRect();
+            const startXMin = bodyRect.left;
+            const startXMax = bodyRect.right;
+
+            // Create hearts
+            for (let i = 0; i < 60; i++) { // More confetti
+                const heart = document.createElement('div');
+                heart.classList.add('heart-confetti');
+                heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                heart.style.left = Math.random() * (startXMax - startXMin) + startXMin + 'px';
+                heart.style.fontSize = (Math.random() * 18 + 12) + 'px'; // Larger size range
+                heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
+                heart.style.animationDelay = (Math.random() * 2.5) + 's';
+                document.body.appendChild(heart);
+            }
+
+            // Create Hello Kitty
+            for (let i = 0; i < 20; i++) { // More Kitty
+                const kitty = document.createElement('div');
+                kitty.classList.add('kitty-confetti');
+                kitty.style.backgroundImage = `url('${kittyImages[Math.floor(Math.random() * kittyImages.length)]}')`;
+                kitty.style.left = Math.random() * (startXMax - startXMin) + startXMin + 'px';
+                kitty.style.animationDuration = (Math.random() * 5 + 4) + 's';
+                kitty.style.animationDelay = (Math.random() * 2.5) + 's';
+                document.body.appendChild(kitty);
+            }
+
+            // Remove confetti elements after animation
+            confettiTimeout = setTimeout(() => {
+                document.querySelectorAll('.heart-confetti, .kitty-confetti').forEach(element => {
+                    element.remove();
+                });
+            }, 8000); // Increased time to match animation duration
+        }
+
+        // NEW: Function to create a love explosion effect
+        function createLoveExplosion() {
+            const explosionContainer = document.createElement('div');
+            explosionContainer.classList.add('love-explosion');
+            document.body.appendChild(explosionContainer);
+
+            const numParticles = 50; // Number of heart particles in the explosion
+
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('heart-particle');
+                
+                const size = Math.random() * 25 + 15; // Random size for hearts
+                const startX = window.innerWidth / 2;
+                const startY = window.innerHeight / 2;
+
+                const angle = Math.random() * Math.PI * 2; // Random direction
+                const velocity = Math.random() * 150 + 50; // Random velocity
+
+                // Initial position (center of screen)
+                particle.style.left = `${startX - size / 2}px`;
+                particle.style.top = `${startY - size / 2}px`;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Set custom properties for animation in CSS
+                particle.style.setProperty('--end-x', `${Math.cos(angle) * velocity}px`);
+                particle.style.setProperty('--end-y', `${Math.sin(angle) * velocity}px`);
+                particle.style.animationDelay = `${i * 0.01}s`; // Stagger animation slightly
+
+                explosionContainer.appendChild(particle);
+
+                // Remove particle after animation
+                particle.addEventListener('animationend', () => {
+                    particle.remove();
+                    // Remove container when all particles are gone (or after a fixed time)
+                    if (explosionContainer.children.length === 0) {
+                        explosionContainer.remove();
+                    }
+                });
+            }
+            // Fallback to remove container after a fixed time in case some events don't fire
+            setTimeout(() => {
+                if (explosionContainer.parentNode) {
+                    explosionContainer.remove();
+                }
+            }, 3000); // Remove after 3 seconds
+        }
+
+
+        // Particle Burst Effect for Counter Items
+        function createParticleBurst(element) {
+            const rect = element.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 15; i++) { // Number of particles
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                document.body.appendChild(particle);
+
+                const size = Math.random() * 8 + 3; // Particle size
+                const angle = Math.random() * Math.PI * 2; // Random direction
+                const distance = Math.random() * 30 + 10; // Distance to burst
+
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${centerX + Math.cos(angle) * distance}px`;
+                particle.style.top = `${centerY + Math.sin(angle) * distance}px`; // Initial position for burst
+                particle.style.setProperty('--translateY', `${-(Math.random() * 50 + 20)}px`); // Particle specific translation
+                particle.style.animationDelay = `${Math.random() * 0.2}s`; // Slight delay for stagger
+                particle.style.animationDuration = `${Math.random() * 0.5 + 0.5}s`; // Randomize duration
+
+                particle.addEventListener('animationend', () => {
+                    particle.remove();
+                });
+            }
+            playSound(sparkleSound); // Play sparkle sound on particle burst
+        }
+
+        // Attach particle burst to counter items
+        document.querySelectorAll('.counter-item').forEach(item => {
+            item.addEventListener('mouseover', () => createParticleBurst(item));
+            // You can also add a click event if you prefer:
+            // item.addEventListener('click', () => createParticleBurst(item));
+        });
+
+        // Cursor Trail Effect
+        document.addEventListener('mousemove', function(e) {
+            const trail = document.createElement('div');
+            trail.classList.add('cursor-trail');
+            trail.style.left = `${e.clientX - 10}px`; // Adjust for size
+            trail.style.top = `${e.clientY - 10}px`;  // Adjust for size
+            document.body.appendChild(trail);
+
+            // Remove trail after animation
+            trail.addEventListener('animationend', () => {
+                trail.remove();
+            });
+        });
+
+        // Subtle Background Bubbles Animation
+        function createBackgroundBubbles() {
+            const backgroundAnimation = document.getElementById('backgroundAnimation');
+            const numBubbles = 10;
+
+            for (let i = 0; i < numBubbles; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+
+                const size = Math.random() * 100 + 50; // Larger bubbles
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 15 + 15; // Longer duration
+                const delay = Math.random() * 10;
+
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${left}vw`;
+                bubble.style.animationDuration = `${animationDuration}s`;
+                bubble.style.animationDelay = `${delay}s`;
+                bubble.style.bottom = `-${size}px`; // Start from below the viewport
+
+                backgroundAnimation.appendChild(bubble);
+
+                // Recreate bubble once it finishes animation to keep it infinite
+                bubble.addEventListener('animationend', () => {
+                    bubble.remove();
+                    createBackgroundBubblesSingle(); // Create a new one
+                });
+            }
+        }
+
+        function createBackgroundBubblesSingle() {
+            const backgroundAnimation = document.getElementById('backgroundAnimation');
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+
+            const size = Math.random() * 100 + 50;
+            const left = Math.random() * 100;
+            const animationDuration = Math.random() * 15 + 15;
+            const delay = Math.random() * 10;
+
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${left}vw`;
+            bubble.style.animationDuration = `${animationDuration}s`;
+            bubble.style.animationDelay = `${delay}s`;
+            bubble.style.bottom = `-${size}px`;
+
+            backgroundAnimation.appendChild(bubble);
+
+            bubble.addEventListener('animationend', () => {
+                bubble.remove();
+                createBackgroundBubblesSingle();
+            });
+        }
+
+
+        // On DOM Load
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loading-screen');
             
-        </body>
-    </div>
-    
+            // Set a minimum display time for the loading screen (e.g., 2 seconds)
+            const minDisplayTime = 1500; // 1.5 seconds
+
+            // Store the time when DOM content was loaded
+            const domContentLoadedTime = Date.now();
+
+            // Function to hide the loading screen
+            function hideLoadingScreen() {
+                const currentTime = Date.now();
+                const timeElapsed = currentTime - domContentLoadedTime;
+
+                // Ensure loading screen is shown for at least minDisplayTime
+                const remainingTime = minDisplayTime - timeElapsed;
+
+                if (remainingTime > 0) {
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                    }, remainingTime);
+                } else {
+                    loadingScreen.classList.add('hidden');
+                }
+            }
+
+            // Event listener for when window finishes loading all assets (images, etc.)
+            window.addEventListener('load', hideLoadingScreen);
+
+            // Fallback for if window.load fires before DOMContentLoaded (unlikely but safe)
+            // Or if page assets are very light, it might hide too fast.
+            // This ensures DOMContentLoaded initializations still happen.
+            
+            createFloatingHearts();
+            createBackgroundBubbles(); // Start background bubbles
+
+            updateTimeTogetherCounter();
+            setInterval(updateTimeTogetherCounter, 1000 * 60 * 60); // Update every hour
+
+            updateKawaiiClock();
+            setInterval(updateKawaiiClock, 1000); // Update every second
+            
+            // Add click listener for the clock container to play meow sound
+            document.getElementById('kawaiiClockContainer').addEventListener('click', () => {
+                playSound(kittyMeowSound);
+            });
+
+
+            renderCalendar(); // Initial render
+            document.getElementById('prevMonth').addEventListener('click', () => changeMonth(-1));
+            document.getElementById('nextMonth').addEventListener('click', () => changeMonth(1));
+
+            // Initialize and rotate quotes
+            displayRandomQuote();
+            setInterval(displayRandomQuote, 10000); // Change quote every 10 seconds
+
+            // Love Meter event listeners
+            updateLoveMeter(); // Initial state
+            document.getElementById('increaseLove').addEventListener('click', increaseLove);
+            document.getElementById('resetLove').addEventListener('click', resetLove);
+        });
+    </script>
 </body>
 </html>
